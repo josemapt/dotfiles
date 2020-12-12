@@ -56,6 +56,20 @@ yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat
 <hr>
 <br>
 
+# Neovim plugins
+To enable neovim plugins run
+```
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+and then run this to load plugins
+```
+nvim -c 'PlugInstall --sync' +qa
+```
+
+<br>
+<hr>
+<br>
 
 # Setting up zsh
 First, install zsh with
