@@ -16,6 +16,8 @@ curl -O https://raw.githubusercontent.com/josemapt/dotfiles/main/zinstall.sh; ch
 
 ***Quick Links***
   - [Qtile](https://github.com/josemapt/dotfiles/tree/main/.config/qtile)
+  - [Neovim](https://github.com/josemapt/dotfiles/tree/main/.config/nvim)
+  
   
 
 # Base pakages:
