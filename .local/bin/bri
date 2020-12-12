@@ -3,7 +3,6 @@
 # This program changes brightness
 # Example: bri up (increases 5% brightness)
 
-
 msgId="991048"
 
 function getProgressString {
