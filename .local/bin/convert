@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# transform .odt files into .pdf files (need libreoffice)
+
+if [ ! -f $1 ]; then
+    echo -e "\033[0;31mIt must be \033[0;35m'convert \033[0;33m<file.odt>'\033[0;31m for correct usage"
+    return 1
+else
+    soffice --headless --convert-to pdf $1 > /dev/null 2>&1
+    echo -e "\033[0;33mCreated file ${1}\033[0m"
+    return 0
+fi
