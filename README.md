@@ -12,10 +12,13 @@ curl -O https://raw.githubusercontent.com/josemapt/dotfiles/main/zinstall.sh; ch
 <hr>
 <br>
 
-<img src="https://github.com/josemapt/dotfiles_old/blob/main/screenshots/qtile.jpg">
+<img src="https://repository-images.githubusercontent.com/320825726/85ecb200-3c89-11eb-94e8-efedf91e4b9a">
 
 ***Quick Links***
   - [Qtile](https://github.com/josemapt/dotfiles/tree/main/.config/qtile)
+  - [Neovim](https://github.com/josemapt/dotfiles/tree/main/.config/nvim)
+  
+  
 
 # Base pakages:
 
@@ -32,7 +35,7 @@ Then start qtile and copy the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S thunar nitrogen dmenu git brightnessctl python-psutil acpi alsa-utils volumeicon cbatticon network-manager-applet geeqie xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip evince zsh xdg-utils
+sudo pacman -S thunar feh dmenu git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet geeqie xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip evince zsh xdg-utils
 ```
 
 # Installing yay.
@@ -59,12 +62,14 @@ First, install zsh with
 ```
 sudo pacman -S zsh
 ```
-then run
+To change the default shell run
 ```
-chsh -s /bin/zsh USER
+# User default shell
+chsh -s /bin/zsh $(whoami)
+
+# Superuser default shell
 sudo chsh -s /bin/zsh
 ```
-to change default shell
 
 <br>
 <hr>
@@ -80,11 +85,23 @@ Type <b>about:config</b> and set <b>layers.acceleration.force-enabled = true</b>
 # Changing GTK theme:
 Download any theme in https://www.gnome-look.org/browse/cat/135/ord/rating/ and run:
 ```
+# In this case I am installing the Marwaita theme and the Tela icon theme
+
 cd Downloads/
-tar -xf THEME.tar.gz
-sudo mv THEME /usr/share/themes
+
+tar -xf Marwaita.tar.xz
+tar -xf 01-Tela.tar.xz
+
+rm Marwaita.tar.xz
+rm 01-Tela.tar.xz
+
+sudo mv Tela /usr/share/icons/
+sudo mv Tela-dark/ /usr/share/icons/
+
+sudo mv Marwaita\ Dark/ /usr/share/themes/
+sudo mv Marwaita\ Light/ /usr/share/themes/
 ```
-Download the <b>breeze</b> cursor theme in https://www.gnome-look.org/p/999927/ and run:
+Download the <b>Breeze</b> cursor theme in https://www.gnome-look.org/p/999927/ and run:
 ```
 cd Downloads/
 tar -xf 165371-Breeze.tar.gz
@@ -95,8 +112,8 @@ Now edit <b>~/.config/gtk-3.0/settings.ini</b> and <b>/usr/share/icons/default/i
 ```
 # ~/.config/gtk-3.0/settings.ini
 [Settings]
-gtk-icon-theme-name = ICON THEME
-gtk-theme-name = THEME
+gtk-icon-theme-name = Tela
+gtk-theme-name = Marwaita Dark
 gtk-cursor-theme-name = Breeze
 
 # /usr/share/icons/default/index.theme
@@ -125,14 +142,14 @@ And reboot
 <br>
 
 # Changing GRUB theme
-Download <b>vimix</b> grub theme from https://www.gnome-look.org/browse/cat/109/ord/rating/ and run:
+Download <b>Vimix</b> grub theme from https://www.gnome-look.org/browse/cat/109/ord/rating/ and run:
 ```
 cd Downloads/
 tar -xf Vimix-1080p.tar.xz
 rm Vimix-1080p.tar.xz
 sudo mv Vimix-1080p /boot/grub/themes
 ```
-Then edit <b>/etc/default/grub</b> by uncomment <b>GRUB_THEME</b> and add:
+Then edit <b>/etc/default/grub</b> by adding:
 ```
 GRUB_THEME="/boot/grub/themes/Vimix-1080p/Vimix/theme.txt"
 ```
