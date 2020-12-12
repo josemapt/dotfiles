@@ -1,8 +1,6 @@
 # Normal aliases===================================================================
 alias sudo='sudo '
 
-alias find='find . -iname'
-
 alias grep='grep --color=always'
 
 alias ls='exa -F --group-directories-first'

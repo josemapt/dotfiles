@@ -2,8 +2,20 @@
 
 # Change qtile theme
 
-theme='{"theme": "'$1'"}'
+if [ $1 = '-l' ] 2> /dev/null; then
+    echo -e "\033[1;34mTheme options:\n\033[1;37m`ls ~/.config/qtile/themes/ | grep -i json$ | cut -f 1 -d '.'` \033[0m"
+else
+    if [[ `ls ~/.config/qtile/themes/ | grep -i json$ | cut -f 1 -d '.'` = *$1* ]]; then
 
-sed -i '1 d' ~/.config/qtile/theme.json
+        theme='{"theme": "'$1'"}'
 
-echo $theme >> ~/.config/qtile/theme.json
+        sed -i '1 d' ~/.config/qtile/theme.json
+
+        echo $theme >> ~/.config/qtile/theme.json
+
+        echo -e "\033[1;34mTheme has changed. Reload qtile to apply changes\033[0m"
+    else
+        echo -e "\033[1;31mTheme not found. Run \033[1;33mchtm -l \033[1;31mto list all avaliable themes\033[0m"
+        return 1 2> /dev/null
+    fi
+fi
