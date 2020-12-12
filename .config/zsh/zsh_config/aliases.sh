@@ -13,7 +13,7 @@ alias tree='exa -T --level=2'
 
 alias ..='cd ..'
 
-alias cp='cp -v'
+alias cp='cp -vi'
 alias rm='rm -rv'
 alias mv='mv -v'
 
@@ -28,10 +28,18 @@ alias test_qtile='Xephyr -br -ac -noreset -screen 1280x720 :1 & ; DISPLAY=:1 qti
 
 alias mkex='chmod +x'
 
+alias df='df -h'
+
 alias scrot='scrot -p'
 
 # Global aliases===================================================================
 alias -g nv='nvim'
+
+# Git aliases=====================================================================
+alias add='git add -uv'
+alias commit='git commit -m'
+alias push='git push -uv --progress origin main'
+alias pull='git pull -v --progress'
 
 # Suffix aliases===================================================================
 #alias -s sh='nvim'
