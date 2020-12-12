@@ -1,0 +1,12 @@
+{
+    "bg": "#292d3e",
+
+    "active": "#f1ffff",
+    "inactive": "#4c566a",
+    "focus": "#61AFEF",
+
+    "color1": "#C678DD",
+    "color2": "#E06C75",
+    "color3": "#61AFEF",
+    "color4": "#98C379"
+}
