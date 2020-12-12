@@ -62,12 +62,14 @@ First, install zsh with
 ```
 sudo pacman -S zsh
 ```
-then run
+To change the default shell run
 ```
-chsh -s /bin/zsh USER
+# User default shell
+chsh -s /bin/zsh $(whoami)
+
+# Superuser default shell
 sudo chsh -s /bin/zsh
 ```
-to change default shell
 
 <br>
 <hr>
