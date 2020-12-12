@@ -8,6 +8,9 @@ fi
 # Enable colors
 autoload -U colors && colors
 
+# highlight config
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)       # enables main and brackets highlight
+
 
 # path-completion ==============================================================================
 autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
@@ -52,10 +55,6 @@ setopt PROMPT_SUBST
 # prompt ==============================================================================
 PS1='%F{magenta}(%~) %F{blue}%n%f %(?.%F{green}.%F{red})%f '
 RPROMPT='${vcs_info_msg_0_}'
-
-
-# highlight config
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)       # enables main and brackets highlight
 
 
 # Sources -------------------------------------------------------------
