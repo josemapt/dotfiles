@@ -41,8 +41,17 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
+# git branch ==============================================================================
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' formats ' on %b'
+
+setopt PROMPT_SUBST
+
 # prompt ==============================================================================
-PS1="%F{magenta}(%~) %F{blue}%n%f %(?.%F{green}.%F{red})%f "
+PS1='%F{magenta}(%~) %F{blue}%n%f %(?.%F{green}.%F{red})%f '
+RPROMPT='${vcs_info_msg_0_}'
 
 
 # highlight config
