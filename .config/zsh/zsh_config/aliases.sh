@@ -37,7 +37,7 @@ alias -g nv='nvim'
 
 # Git aliases=====================================================================
 alias add='git add -uv'
-alias commit='git commit -m'
+alias commit='git commit -am'
 alias push='git push -uv --progress origin main'
 alias pull='git pull -v --progress'
 
