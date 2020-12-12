@@ -23,6 +23,25 @@ set autoindent      " Good auto indent
 
 syntax enable       " Enables syntax highlighing
 
+" Colors and theming =================================================================
+" 1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:gray 8:gray+ 9-> dim
+highlight LineNr           ctermfg=11    ctermbg=none    cterm=none     " line numbers
+highlight CursorLineNr     ctermfg=11    ctermbg=8       cterm=bold     " current line number
+
+highlight Comment          ctermfg=12    ctermbg=none    cterm=italic    " comment
+
+highlight String           ctermfg=4     ctermbg=none    cterm=none      " string
+highlight Number           ctermfg=2     ctermbg=none    cterm=none      " number
+highlight Constant         ctermfg=12    ctermbg=none    cterm=none      " constants
+highlight Function         ctermfg=9     ctermbg=none    cterm=italic    " functions
+
+highlight Statement        ctermfg=13    ctermbg=none    cterm=bold      " def, return ...
+highlight PreProc          ctermfg=13    ctermbg=none    cterm=bold      " from, import ...
+
+
+highlight CursorLine       ctermfg=none     ctermbg=8     cterm=none      " cursor line
+
+
 " remaps ==============================================================================
 " quit with Ctr+q
 nnoremap <C-q> :q!<CR>
