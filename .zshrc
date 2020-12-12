@@ -53,7 +53,7 @@ zstyle ':vcs_info:git:*' formats ' on %b'
 setopt PROMPT_SUBST
 
 # prompt ==============================================================================
-PS1='%F{magenta}(%~) %F{blue}%n%f %(?.%F{green}.%F{red})%f '
+PS1='%F{magenta}(%~) %F{yellow}%n%f %(?.%F{green}.%F{red})%f '
 RPROMPT='${vcs_info_msg_0_}'
 
 
