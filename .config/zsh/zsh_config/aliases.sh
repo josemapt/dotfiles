@@ -36,7 +36,8 @@ alias scrot='scrot -p'
 alias -g nv='nvim'
 
 # Git aliases=====================================================================
-alias add='git add -uv'
+alias upgrade='git add -uv'
+alias add='git add -v'
 alias commit='git commit -am'
 alias push='git push -uv --progress origin main'
 alias pull='git pull -v --progress'

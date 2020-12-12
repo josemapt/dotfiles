@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Change qtile theme
+
+theme='{"theme": "'$1'"}'
+
+sed -i '1 d' ~/.config/qtile/theme.json
+
+echo $theme >> ~/.config/qtile/theme.json
