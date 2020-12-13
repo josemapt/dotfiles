@@ -53,9 +53,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '%b%F{red}[%B!%b]%f'
 zstyle ':vcs_info:*' stagedstr '%b%F{yellow}[%B+%b]%f]'
 
-zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-
-zstyle ':vcs_info:git:*' formats '%F{green}%f on %F{cyan}%B%b%f %u%c %s %a'
+zstyle ':vcs_info:git:*' formats '%F{green}%f on %F{cyan}%B%b%f %u%c'
 
 setopt PROMPT_SUBST
 
