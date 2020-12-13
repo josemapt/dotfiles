@@ -1,9 +1,24 @@
+source ~/.config/nvim/theme.vim
+source ~/.config/nvim/statusline.vim
+source ~/.config/nvim/autopair.vim
+source ~/.config/nvim/indentline.vim
+
 set number		    " add line numbers
-set title		    " add title
+set title		      " add title
+
+" Theme options
+set termguicolors
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+
+set nowrap          " do not wrap lines
+
+set history=500     " The number of command and search history to keep
 
 set nobackup        " do not make copies of the file
+set noswapfile      " Disable creating swapfiles
 
-set mouse=a		    " enable mouse
+set mouse=a		      " enable mouse
 set ruler           " Show the cursor position all the time
 
 set cursorline		" highlighting of the current line
@@ -12,6 +27,7 @@ set scrolloff=3		" set lines from border
 
 set showtabline=1   " set 2 to show topbar
 set noshowmode      " hide mode
+set laststatus=2    " Set height of status line
 
 set ignorecase		" ignore uppercase in search
 set smartcase		" not ignore upercase if search contains uppercase
@@ -21,25 +37,9 @@ set encoding=utf-8  " The encoding displayed
 set smartindent     " Makes indenting smart
 set autoindent      " Good auto indent
 
+
+
 syntax enable       " Enables syntax highlighing
-
-" Colors and theming =================================================================
-" 1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:gray 8:gray+ 9-> dim
-highlight LineNr           ctermfg=11    ctermbg=none    cterm=none     " line numbers
-highlight CursorLineNr     ctermfg=11    ctermbg=8       cterm=bold     " current line number
-
-highlight Comment          ctermfg=12    ctermbg=none    cterm=italic    " comment
-
-highlight String           ctermfg=4     ctermbg=none    cterm=none      " string
-highlight Number           ctermfg=2     ctermbg=none    cterm=none      " number
-highlight Constant         ctermfg=12    ctermbg=none    cterm=none      " constants
-highlight Function         ctermfg=9     ctermbg=none    cterm=italic    " functions
-
-highlight Statement        ctermfg=13    ctermbg=none    cterm=bold      " def, return ...
-highlight PreProc          ctermfg=13    ctermbg=none    cterm=bold      " from, import ...
-
-
-highlight CursorLine       ctermfg=none     ctermbg=8     cterm=none      " cursor line
 
 
 " remaps ==============================================================================
@@ -69,64 +69,12 @@ vnoremap <C-v> p
 
 
 " plugins ======================================================================
-call plug#begin('~/.local/share/nvim/plugged')
+" call plug#begin('~/.local/share/nvim/plugged')
 
     " Plug 'scrooloose/nerdtree'      " file explorer
     " Plug 'vim-airline/vim-airline'  " airline
-    Plug 'Yggdroot/indentLine'      " indent line
-    Plug 'haya14busa/incsearch.vim' " better search
-    Plug 'jiangmiao/auto-pairs'     " double commas, parentesis...
+    " Plug 'Yggdroot/indentLine'      " indent line
+    " Plug 'haya14busa/incsearch.vim' " better search
+    " Plug 'jiangmiao/auto-pairs'     " double commas, parentesis...
 
-call plug#end()
-
-
-" Plugins config ===============================================================
-
-" nerdtree configs
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-" nnoremap <C-t> :NERDTreeToggle<CR>
-
-" necessary for search
-map /  <Plug>(incsearch-forward)
-
-" airline config
-" let g:airline_powerline_fonts = 1           " enables powerline in airline
-" let g:airline_skip_empty_sections = 1       " hiddes empty sections
-
-" set indent character
-let g:indentLine_char = '|'
-
-
-
-" Statusbar config ================================================================
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
-  elseif a:mode == 'r'
-    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
-  else
-    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
-  endif
-endfunction
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
-
-" default the statusline to gray when entering Neovim
-hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
-
-" Formats the statusline
-set statusline=%f                           " file name
-" set statusline+=[%{strlen(&fenc)?&fenc:'none'}, " file encoding
-" set statusline+=%{&ff}] " file format
-" set statusline+=%y      " filetype
-set statusline+=%h        " help file flag
-set statusline+=%m        " modified flag
-set statusline+=%r        " read only flag
-
-set statusline+=\ %=                        " align left
-set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
-set statusline+=\ Column:%c                    " current column
-" set statusline+=\ Buf:%n                    " Buffer number
-" set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
+" call plug#end()
