@@ -28,6 +28,7 @@ alias mkex='chmod +x'
 
 alias df='df -h'
 
+alias dmenu="dmenu_run -p '>>>' -fn 'ohsnap:size=16' -nb '#454545' -nf '#ffffff' -sb '#458588' -sf '#ffffff'"
 alias scrot='scrot -p'
 
 # Global aliases===================================================================

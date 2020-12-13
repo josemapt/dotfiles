@@ -27,8 +27,8 @@ au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 
 " set groups colors
-hi User1 ctermfg=0 ctermbg=13
-hi User2 ctermfg=gray ctermbg=0
+hi User1 guifg=0 guibg=#c678dd
+hi User2 guifg=gray guibg=0
 
 " Formats the statusline
 set statusline=
