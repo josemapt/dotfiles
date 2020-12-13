@@ -48,7 +48,12 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
-zstyle ':vcs_info:git:*' formats ' on %b'
+# Information about changes (! for unstaged changes) (+ for staged changes)
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '%b%F{red}[%B!%b]%f'
+zstyle ':vcs_info:*' stagedstr '%b%F{yellow}[%B+%b]%f]'
+
+zstyle ':vcs_info:git:*' formats '%F{green}%f on %F{cyan}%B%b%f %u%c'
 
 setopt PROMPT_SUBST
 

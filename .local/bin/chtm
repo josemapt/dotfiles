@@ -16,6 +16,7 @@ else
         echo -e "\033[1;34mTheme has changed. Reload qtile to apply changes\033[0m"
     else
         echo -e "\033[1;31mTheme not found. Run \033[1;33mchtm -l \033[1;31mto list all avaliable themes\033[0m"
-        return 1 2> /dev/null
+        # return 1
+        false
     fi
 fi

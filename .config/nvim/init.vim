@@ -71,8 +71,8 @@ vnoremap <C-v> p
 " plugins ======================================================================
 call plug#begin('~/.local/share/nvim/plugged')
 
-    Plug 'scrooloose/nerdtree'      " file explorer
-    Plug 'vim-airline/vim-airline'  " airline
+    " Plug 'scrooloose/nerdtree'      " file explorer
+    " Plug 'vim-airline/vim-airline'  " airline
     Plug 'Yggdroot/indentLine'      " indent line
     Plug 'haya14busa/incsearch.vim' " better search
     Plug 'jiangmiao/auto-pairs'     " double commas, parentesis...
@@ -83,15 +83,50 @@ call plug#end()
 " Plugins config ===============================================================
 
 " nerdtree configs
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-nnoremap <C-t> :NERDTreeToggle<CR>
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" nnoremap <C-t> :NERDTreeToggle<CR>
 
 " necessary for search
 map /  <Plug>(incsearch-forward)
 
 " airline config
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1           " enables powerline in airline
+" let g:airline_skip_empty_sections = 1       " hiddes empty sections
 
 " set indent character
 let g:indentLine_char = '|'
+
+
+
+" Statusbar config ================================================================
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+
+" default the statusline to gray when entering Neovim
+hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+
+" Formats the statusline
+set statusline=%f                           " file name
+" set statusline+=[%{strlen(&fenc)?&fenc:'none'}, " file encoding
+" set statusline+=%{&ff}] " file format
+" set statusline+=%y      " filetype
+set statusline+=%h        " help file flag
+set statusline+=%m        " modified flag
+set statusline+=%r        " read only flag
+
+set statusline+=\ %=                        " align left
+set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
+set statusline+=\ Column:%c                    " current column
+" set statusline+=\ Buf:%n                    " Buffer number
+" set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
