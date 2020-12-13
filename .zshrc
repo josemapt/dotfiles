@@ -51,14 +51,16 @@ precmd() { vcs_info }
 # Information about changes (! for unstaged changes) (+ for staged changes)
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '%b%F{red}[%B!%b]%f'
-zstyle ':vcs_info:*' stagedstr '%b%F{yellow}[%B+%b]%f]'
+zstyle ':vcs_info:*' stagedstr '%b%F{yellow}[%B+%b]%f'
 
-zstyle ':vcs_info:git:*' formats '%F{green}%f on %F{cyan}%B%b%f %u%c'
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+
+zstyle ':vcs_info:git:*' formats '%F{green}%f on %F{cyan}%B%b%f %u%c%a'
 
 setopt PROMPT_SUBST
 
 # prompt ==============================================================================
-PS1='%F{magenta}(%~) %F{yellow}%n%f %(?.%F{green}.%F{red})%f '
+PS1='%F{magenta}(%~) %F{yellow}%n%f %(?.%F{green}.%F{red})%f%b '
 RPROMPT='${vcs_info_msg_0_}'
 
 
