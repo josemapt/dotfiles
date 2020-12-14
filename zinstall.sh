@@ -44,7 +44,7 @@ if [[ $cmd != *nerd-fonts-ubuntu-mono* ]]; then
     b="nerd-fonts-ubuntu-mono"
 fi
 if [[ $cmd != *dmenu-josemapt-git* ]]; then
-    c="ccat"
+    c="dmenu-josemapt-git"
 fi
 if [[ $cmd != *ccat* ]]; then
     d="ccat"
@@ -59,18 +59,19 @@ git clone https://github.com/josemapt/dotfiles.git
 
 echo -e "${YE}Moving files...${NC}"
 sleep 1
-mv -f dotfiles/.config/qtile/* ~/.config/qtile
 mv -f dotfiles/.config/* .config
 chmod +x .config/qtile/autostart.sh
 
 mv dotfiles/.local/bin .local
 chmod +x .local/bin/*
+
 mv dotfiles/scripts ~
 chmod +x scripts/*
+
 mv dotfiles/.bashrc ~
 mv dotfiles/.xinitrc ~
 mv dotfiles/.zshrc ~
-rm -rf dotfiles
+
 echo -e "${YE}Done${NC}"
 
 # Creating gtk3 config file
@@ -89,38 +90,55 @@ fi
 #--------------------------
 
 #Installing extra pakages
-echo -e -n "${PU}Do you want to install the Marwaita theme and the Tela icon theme (y/n)?${NC} "
+theme_path='~/.dotfiles/.config/theme/'
+
+echo -e -n "${PU}Do you want to install the Tela icon theme (y/n)?${NC} "
 read a1
 
 if [ "${a1}" = "y" ] || [ "${a1}" = "" ]; then
-    echo -e -n "${RE}Make sure you have downloaded them from ${PU}https://www.gnome-look.org/p/1239855/ ${RE}(Marwaita) and ${PU}https://www.gnome-look.org/p/1279924/ ${RE}(Tela icon theme) and then press ${PU}enter${NC}"
-    read any1
-    if [ -f ~/Downloads/01-Tela.tar.xz ] && [ -f ~/Downloads/Marwaita.tar.xz ]; then
-        echo -e "${YE}Installing the Marwaita theme and the Tela icon theme...${NC} "
-        sleep 1
-        cd Downloads/
+    
+    echo -e "${YE}Installing the Tela icon theme...${NC} "
+    sleep 1
+    
+    tar -xf ${theme_path}01-Tela.tar.xz
+    rm ${theme_path}01-Tela.tar.xz
+    sudo mv ${theme_path}Tela /usr/share/icons/
+    sudo mv ${theme_path}Tela-dark/ /usr/share/icons/
 
-        tar -xf 01-Tela.tar.xz
-        rm 01-Tela.tar.xz
-        sudo mv Tela /usr/share/icons/
-        sudo mv Tela-dark/ /usr/share/icons/
+    tar -xf Marwaita.tar.xz
+    rm Marwaita.tar.xz
+    sudo mv Marwaita /usr/share/themes/
+    sudo mv Marwaita\ Dark/ /usr/share/themes/
+    sudo mv Marwaita\ Light/ /usr/share/themes/
 
-        tar -xf Marwaita.tar.xz
-        rm Marwaita.tar.xz
-        sudo mv Marwaita /usr/share/themes/
-        sudo mv Marwaita\ Dark/ /usr/share/themes/
-        sudo mv Marwaita\ Light/ /usr/share/themes/
+    echo "gtk-icon-theme-name = Tela" >> .config/gtk-3.0/settings.ini
+    echo "gtk-theme-name = Marwaita Dark" >> .config/gtk-3.0/settings.ini
 
-        cd ~
+    echo -e "${YE}Done${NC}"
+    
 
-        echo "gtk-icon-theme-name = Tela" >> .config/gtk-3.0/settings.ini
-        echo "gtk-theme-name = Marwaita Dark" >> .config/gtk-3.0/settings.ini
+else
+    break
+fi
 
-        echo -e "${YE}Done${NC}"
-    else
-        echo -e "${RE}Files haven't been found${NC}"
-        break
-    fi
+echo -e -n "${PU}Do you want to install the Marwaita theme (y/n)?${NC} "
+read aa1
+
+if [ "${aa1}" = "y" ] || [ "${aa1}" = "" ]; then
+    
+    echo -e "${YE}Installing the Marwaita theme...${NC} "
+    sleep 1
+
+    tar -xf ${theme_path}Marwaita.tar.xz
+    rm ${theme_path}Marwaita.tar.xz
+    sudo mv ${theme_path}Marwaita /usr/share/themes/
+    sudo mv ${theme_path}Marwaita\ Dark/ /usr/share/themes/
+    sudo mv ${theme_path}Marwaita\ Light/ /usr/share/themes/
+
+    echo "gtk-theme-name = Marwaita Dark" >> .config/gtk-3.0/settings.ini
+
+    echo -e "${YE}Done${NC}"
+    
 
 else
     break
@@ -131,28 +149,19 @@ echo -e -n "${PU}Do you want to install he Breeze cursor theme (y/n)?${NC} "
 read a2
 
 if [ "${a2}" = "" ] || [ "${a2}" = "y" ]; then
-    echo -e -n "${RE}Make sure that you have downloaded it from ${PU}https://www.gnome-look.org/p/999927/ ${RE} and then press ${PU}enter${NC}"
-    read any2
     
-    if [ -f ~/Downloads/165371-Breeze.tar.gz ]; then
-        echo -n -e "${PU}Installing the Breeze cursor theme...${NC} "
-        sleep 1
+    echo -n -e "${PU}Installing the Breeze cursor theme...${NC} "
+    sleep 1
 
-        cd Downloads
-        tar -xf 165371-Breeze.tar.gz
-        rm 165371-Breeze.tar.gz
-        sudo mv Breeze /usr/share/icons
+    tar -xf ${theme_path}165371-Breeze.tar.gz
+    rm ${theme_path}165371-Breeze.tar.gz
+    sudo mv ${theme_path}Breeze /usr/share/icons
 
-        cd ~
-        echo "gtk-cursor-theme-name = Breeze" >> .config/gtk-3.0/settings.ini
+    echo "gtk-cursor-theme-name = Breeze" >> .config/gtk-3.0/settings.ini
 
-        sudo sed -i 's/Adwaita/Breeze/g' /usr/share/icons/default/index.theme
-        echo -e "${YE}Done${NC}"
+    sudo sed -i 's/Adwaita/Breeze/g' /usr/share/icons/default/index.theme
+    echo -e "${YE}Done${NC}"
 
-    else
-        echo -e "${RE}Files haven't been found${NC}"
-        break
-    fi
 else
     break
 fi
@@ -162,33 +171,21 @@ echo -e -n "${PU}Do you want to install he Vimix grub theme (y/n)?${NC} "
 read a3
 
 if [ "${a3}" = "" ] || [ "${a3}" = "y" ]; then
-    echo -e -n "${RE}Make sure that you have downloaded it from ${PU}https://www.gnome-look.org/p/1009236/ ${RE}and then press ${PU}enter${NC}"
-    read any3
 
-    if [ -f ~/Downloads/Vimix-1080p.tar.xz ]; then
-        echo -e "${PU}Installing the Vimix grub theme...${NC} "
-    
-        cd Downloads
+    echo -e "${PU}Installing the Vimix grub theme...${NC} "
 
-        tar -xf Vimix-1080p.tar.xz
-        rm Vimix-1080p.tar.xz
-        sudo mv Vimix-1080p/Vimix/ /boot/grub/themes/
-        rm -r Vimix-1080p
+    tar -xf ${theme_path}Vimix-1080p.tar.xz
+    rm ${theme_path}Vimix-1080p.tar.xz
+    sudo mv ${theme_path}Vimix-1080p/Vimix/ /boot/grub/themes/
+    rm -r ${theme_path}Vimix-1080p
 
-        cd ~
+    sudo chmod 777 /etc/default/grub
+    echo "GRUB_THEME='/boot/grub/themes/Vimix/theme.txt'" >> /etc/default/grub
+    sudo chmod 644 /etc/default/grub
 
-        sudo chmod 777 /etc/default/grub
-        echo "GRUB_THEME='/boot/grub/themes/Vimix/theme.txt'" >> /etc/default/grub
-        sudo chmod 644 /etc/default/grub
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-        sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-        echo -e "${YE}Done${NC}"
-    
-    else
-        echo -e "${RE}Files haven't been found${NC}"
-        break
-    fi
+    echo -e "${YE}Done${NC}"
 
 else
     break

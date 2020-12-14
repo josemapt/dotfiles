@@ -55,4 +55,11 @@ dunst &
 xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &
 xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1 &
 
+# Disable DPMS
+xset -dpms
+xset s off
+xset s noblank
+xset s noexpose
+xset s 0 0
+
 exec qtile

@@ -8,6 +8,11 @@ if [[ "$(tty)" = "/dev/tty1" ]] && [[ "$(whoami)" != "root" ]]; then
     pgrep qtile || startx
 fi
 
+# History config
+export HISTFILE=~/.cache/bash/bash_history
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+
 # load all aliases from ~/.zsh_config/aliases.sh
 source ~/.config/zsh/zsh_config/aliases.sh
 
