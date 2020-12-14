@@ -35,7 +35,7 @@ Then start qtile and copy the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S thunar feh dmenu git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet geeqie xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip evince zsh xdg-utils
+sudo pacman -S thunar feh git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet geeqie xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip evince zsh xdg-utils
 ```
 
 # Installing yay.
@@ -56,20 +56,6 @@ yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat
 <hr>
 <br>
 
-# Neovim plugins
-To enable neovim plugins run
-```
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-and then run this to load plugins
-```
-nvim -c 'PlugInstall --sync' +qa
-```
-
-<br>
-<hr>
-<br>
 
 # Setting up zsh
 First, install zsh with
