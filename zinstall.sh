@@ -43,10 +43,13 @@ fi
 if [[ $cmd != *nerd-fonts-ubuntu-mono* ]]; then
     b="nerd-fonts-ubuntu-mono"
 fi
-if [[ $cmd != *ccat* ]]; then
+if [[ $cmd != *dmenu-josemapt-git* ]]; then
     c="ccat"
 fi
-pakages="$a $b $c"
+if [[ $cmd != *ccat* ]]; then
+    d="ccat"
+fi
+pakages="$a $b $c $d"
 yay -S --noconfirm $pakages
 
 # Cloning repository and moving files
@@ -54,59 +57,16 @@ echo -e "${YE}Cloning repository...${NC}"
 slep 1
 git clone https://github.com/josemapt/dotfiles.git
 
-echo -e "${YE}Relocating files...${NC}"
+echo -e "${YE}Moving files...${NC}"
 sleep 1
 mv -f dotfiles/.config/qtile/* ~/.config/qtile
 mv -f dotfiles/.config/* .config
 chmod +x .config/qtile/autostart.sh
 
-# Neovim plugins installation
-if [ `pacman -Qqm` != *neovim* ]; then
-    echo -e -n "${PU}Do you want to install ${YE}neovim${PU} (y/n)?${NC} "
-    read nv1
-    if [ "${nv1}" = "y" ] || [ "${nv1}" = "" ]; then
-        sudo pacman -S --color=always --noconfirm neovim
-
-        echo -e -n "${PU}Do you want to install some nice neovim plugins (y/n)?${NC} "
-        read nv2
-        if [ "${nv2}" = "y" ] || [ "${nv2}" = "" ]; then
-            curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-                https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            
-            nvim -c 'PlugInstall --sync' +qa
-        else
-            break
-        fi
-    else
-        rm -r .config/nvim/init.vim
-    fi
-else
-    echo -e -n "${PU}Do you want to install some nice neovim plugins (y/n)?${NC} "
-    read nv3
-    if [ "${nv3}" = "y" ] || [ "${nv3}" = "" ]; then
-        if [ -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
-            curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-                https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        else
-            break
-        fi
-        nvim -c 'PlugInstall --sync' +qa
-    else
-        break
-    fi
-fi
-
-#----------------------------
-echo -e "${YE}Moving files...${NC}"
-slep 1
-
 mv dotfiles/.local/bin .local
 chmod +x .local/bin/*
-mv dotfiles/.zsh_config ~
 mv dotfiles/scripts ~
 chmod +x scripts/*
-mv dotfiles/zsh-autosuggestions ~
-mv dotfiles/zsh-syntax-highlighting ~
 mv dotfiles/.bashrc ~
 mv dotfiles/.xinitrc ~
 mv dotfiles/.zshrc ~
@@ -274,4 +234,4 @@ fi
 
 # Reboot-----------------------------------------------------------------
 echo ""
-echo -e "${YE}Setting up completed. Reboot is need${NC} "
+echo -e "${YE}Setting up completed. Reboot now to apply changes${NC} "
