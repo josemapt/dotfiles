@@ -9,7 +9,7 @@ if [[ "$(tty)" = "/dev/tty1" ]] && [[ "$(whoami)" != "root" ]]; then
 fi
 
 # load all aliases from ~/.zsh_config/aliases.sh
-source ~/.zsh_config/aliases.sh
+source ~/.config/zsh/zsh_config/aliases.sh
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

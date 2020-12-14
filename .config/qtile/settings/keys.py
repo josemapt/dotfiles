@@ -32,7 +32,7 @@ keys = [
     Key([mod], "v", lazy.spawn("virtualbox")),
     Key([mod], "l", lazy.spawn("libreoffice")),
 
-    Key([mod, "shift"], "Return", lazy.spawn("dmenu_run -p '>>>' -fn 'ohsnap:size=16' -nb '#454545' -nf '#ffffff' -sb '#458588' -sf '#ffffff'")),
+    Key([mod, "shift"], "Return", lazy.spawn("dmenu_run -i -l 10 -fn 'ohsnap:size=18' -nb '#454545' -nf '#ffffff' -sb '#458588' -sf '#ffffff'")),
     
 
     # Volume-----------------------------------------------
