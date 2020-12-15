@@ -57,7 +57,6 @@ yay -S --noconfirm $pakages
 
 # Cloning repository and moving files
 echo -e "${YE}Cloning repository...${NC}"
-slep 1
 git clone https://github.com/josemapt/dotfiles.git
 
 echo -e "${YE}Moving files...${NC}"
@@ -93,8 +92,6 @@ fi
 #--------------------------
 
 #Installing extra pakages
-theme_path='~/.dotfiles/.config/theme/'
-
 echo -e -n "${PU}Do you want to install the Tela icon theme (y/n)?${NC} "
 read a1
 
@@ -103,19 +100,12 @@ if [ "${a1}" = "y" ] || [ "${a1}" = "" ]; then
     echo -e "${YE}Installing the Tela icon theme...${NC} "
     sleep 1
     
-    tar -xf ${theme_path}01-Tela.tar.xz
-    rm ${theme_path}01-Tela.tar.xz
-    sudo mv ${theme_path}Tela /usr/share/icons/
-    sudo mv ${theme_path}Tela-dark/ /usr/share/icons/
-
-    tar -xf Marwaita.tar.xz
-    rm Marwaita.tar.xz
-    sudo mv Marwaita /usr/share/themes/
-    sudo mv Marwaita\ Dark/ /usr/share/themes/
-    sudo mv Marwaita\ Light/ /usr/share/themes/
+    tar -xf ~/.dotfiles/.config/theme/01-Tela.tar.xz
+    rm ~/.dotfiles/.config/theme/01-Tela.tar.xz
+    sudo mv ~/.dotfiles/.config/theme/Tela /usr/share/icons/
+    sudo mv ~/.dotfiles/.config/theme/Tela-dark/ /usr/share/icons/
 
     echo "gtk-icon-theme-name = Tela" >> .config/gtk-3.0/settings.ini
-    echo "gtk-theme-name = Marwaita Dark" >> .config/gtk-3.0/settings.ini
 
     echo -e "${YE}Done${NC}"
     
@@ -132,11 +122,11 @@ if [ "${aa1}" = "y" ] || [ "${aa1}" = "" ]; then
     echo -e "${YE}Installing the Marwaita theme...${NC} "
     sleep 1
 
-    tar -xf ${theme_path}Marwaita.tar.xz
-    rm ${theme_path}Marwaita.tar.xz
-    sudo mv ${theme_path}Marwaita /usr/share/themes/
-    sudo mv ${theme_path}Marwaita\ Dark/ /usr/share/themes/
-    sudo mv ${theme_path}Marwaita\ Light/ /usr/share/themes/
+    tar -xf ~/.dotfiles/.config/theme/Marwaita.tar.xz
+    rm ~/.dotfiles/.config/theme/Marwaita.tar.xz
+    sudo mv ~/.dotfiles/.config/theme/Marwaita /usr/share/themes/
+    sudo mv ~/.dotfiles/.config/theme/Marwaita\ Dark/ /usr/share/themes/
+    sudo mv ~/.dotfiles/.config/theme/Marwaita\ Light/ /usr/share/themes/
 
     echo "gtk-theme-name = Marwaita Dark" >> .config/gtk-3.0/settings.ini
 
@@ -153,12 +143,12 @@ read a2
 
 if [ "${a2}" = "" ] || [ "${a2}" = "y" ]; then
     
-    echo -n -e "${PU}Installing the Breeze cursor theme...${NC} "
+    echo -n -e "${YE}Installing the Breeze cursor theme...${NC} "
     sleep 1
 
-    tar -xf ${theme_path}165371-Breeze.tar.gz
-    rm ${theme_path}165371-Breeze.tar.gz
-    sudo mv ${theme_path}Breeze /usr/share/icons
+    tar -xf ~/.dotfiles/.config/theme/165371-Breeze.tar.gz
+    rm ~/.dotfiles/.config/theme/165371-Breeze.tar.gz
+    sudo mv ~/.dotfiles/.config/theme/Breeze /usr/share/icons
 
     echo "gtk-cursor-theme-name = Breeze" >> .config/gtk-3.0/settings.ini
 
@@ -175,12 +165,12 @@ read a3
 
 if [ "${a3}" = "" ] || [ "${a3}" = "y" ]; then
 
-    echo -e "${PU}Installing the Vimix grub theme...${NC} "
+    echo -e "${YE}Installing the Vimix grub theme...${NC} "
 
-    tar -xf ${theme_path}Vimix-1080p.tar.xz
-    rm ${theme_path}Vimix-1080p.tar.xz
-    sudo mv ${theme_path}Vimix-1080p/Vimix/ /boot/grub/themes/
-    rm -r ${theme_path}Vimix-1080p
+    tar -xf ~/.dotfiles/.config/theme/Vimix-1080p.tar.xz
+    rm ~/.dotfiles/.config/theme/Vimix-1080p.tar.xz
+    sudo mv ~/.dotfiles/.config/theme/Vimix-1080p/Vimix/ /boot/grub/themes/
+    rm -r ~/.dotfiles/.config/theme/Vimix-1080p
 
     sudo chmod 777 /etc/default/grub
     echo "GRUB_THEME='/boot/grub/themes/Vimix/theme.txt'" >> /etc/default/grub
