@@ -50,7 +50,7 @@ if [[ $cmd != *ccat* ]]; then
     d="ccat"
 fi
 if [[ $cmd != *mpv-git* ]]; then
-    echo -e -n "${PU}Do you want to install ${YE}vs-codium${PU} (y/n)?${NC} "
+    echo -e -n "${PU}Do you want to install ${YE}mpv-git${PU} (y/n)?${NC} "
     read mpv
     if [ "${mpv}" = "y" ] || [ "${mpv}" = "" ]; then
         e="mpv-git"
