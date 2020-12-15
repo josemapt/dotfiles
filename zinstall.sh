@@ -50,7 +50,13 @@ if [[ $cmd != *ccat* ]]; then
     d="ccat"
 fi
 if [[ $cmd != *mpv-git* ]]; then
-    e="mpv-git"
+    echo -e -n "${PU}Do you want to install ${YE}vs-codium${PU} (y/n)?${NC} "
+    read mpv
+    if [ "${mpv}" = "y" ] || [ "${mpv}" = "" ]; then
+        e="mpv-git"
+    else
+        break
+    fi
 fi
 pakages="$a $b $c $d $e"
 yay -S --noconfirm $pakages
