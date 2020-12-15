@@ -49,7 +49,7 @@ makepkg -si
 
 # Whith yay:
 ```
-yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git
+yay -S vscodium-bin nerd-fonts-ubuntu-mono dmenu-josemapt-git ccat mpv-git
 ```
 
 <br>
