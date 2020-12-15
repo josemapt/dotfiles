@@ -49,7 +49,10 @@ fi
 if [[ $cmd != *ccat* ]]; then
     d="ccat"
 fi
-pakages="$a $b $c $d"
+if [[ $cmd != *mpv-git* ]]; then
+    e="mpv-git"
+fi
+pakages="$a $b $c $d $e"
 yay -S --noconfirm $pakages
 
 # Cloning repository and moving files

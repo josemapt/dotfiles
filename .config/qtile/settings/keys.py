@@ -29,8 +29,6 @@ keys = [
     Key([mod], "m", lazy.spawn("firefox")),
     Key([mod], "c", lazy.spawn("code")),
     Key([mod], "n", lazy.spawn("thunar")),
-    Key([mod], "v", lazy.spawn("virtualbox")),
-    Key([mod], "l", lazy.spawn("libreoffice")),
 
     Key([mod, "shift"], "Return", lazy.spawn("dmenu_run -i -l 10 -fn 'ohsnap:size=18' -nb '#454545' -nf '#ffffff' -sb '#458588' -sf '#ffffff'")),
     
