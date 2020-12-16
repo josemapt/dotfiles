@@ -11,6 +11,19 @@ autoload -U colors && colors
 # highlight config
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)       # enables main and brackets highlight
 
+# Report time stats of commands running longer than 5 sec
+#REPORTTIME=5
+
+# bindkeys ===================================================================================
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
 
 # path-completion ==============================================================================
 autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
@@ -27,7 +40,8 @@ zstyle ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)
 zstyle ':completion:*:warnings' format "%B$fg[red]%}---- no match for: $fg[white]%d%b"
 # exclude from autocompletion
 zstyle ':completion:*:*:nvim:*:*files' ignored-patterns '*.jpg|*.png|*.pdf|*.odt|*.o|*.so|*.docx'
-
+# Ignore completion functions for commands you don't have:
+zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
 
 # History settings ==============================================================================
 HISTSIZE=5000
@@ -42,6 +56,7 @@ setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+setopt SHARE_HISTORY             # share history between simultaneously running shells
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 # git branch ==============================================================================

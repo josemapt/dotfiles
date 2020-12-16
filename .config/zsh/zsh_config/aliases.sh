@@ -1,6 +1,8 @@
 # Normal aliases===================================================================
 alias sudo='sudo '
 
+alias nv='nvim'
+
 alias grep='grep --color=always'
 
 alias ls='exa -F --group-directories-first'
@@ -32,7 +34,7 @@ alias dmenu="dmenu_run -p '>>>' -fn 'ohsnap:size=16' -nb '#454545' -nf '#ffffff'
 alias scrot='scrot -p'
 
 # Global aliases===================================================================
-alias -g nv='nvim'
+#alias -g nv='nvim'
 
 # Git aliases=====================================================================
 alias add='git add -v .'
