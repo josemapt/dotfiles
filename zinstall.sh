@@ -43,8 +43,12 @@ fi
 if [[ $cmd != *nerd-fonts-ubuntu-mono* ]]; then
     b="nerd-fonts-ubuntu-mono"
 fi
-if [[ $cmd != *dmenu-josemapt-git* ]]; then
+echo -e -n "${PU}Do you want to install ${YE}dmenu-josemapt-git${PU} (y/n)?${NC} "
+read dm
+if [ "${dm}" = "y" ] || [ "${dm}" = "" ]; then
     c="dmenu-josemapt-git"
+else
+    break
 fi
 if [[ $cmd != *ccat* ]]; then
     d="ccat"
