@@ -67,8 +67,11 @@ git clone https://github.com/josemapt/dotfiles.git
 
 echo -e "${YE}Moving files...${NC}"
 sleep 1
-mv -f dotfiles/.config/* .config
+mv -f dotfiles/.config/qtile/* .config/qtile
 chmod +x .config/qtile/autostart.sh
+rmdir dotfiles/.config/qtile
+
+mv -f dotfiles/.config/* .config
 
 mv dotfiles/.local/bin .local
 chmod +x .local/bin/*
