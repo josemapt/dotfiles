@@ -102,6 +102,7 @@ fi
 
 #Installing extra pakages
 theme_path='~/dotfiles/.config/theme/'
+
 echo -e -n "${PU}Do you want to install the Tela icon theme (y/n)?${NC} "
 read a1
 
@@ -110,10 +111,14 @@ if [ "${a1}" = "y" ] || [ "${a1}" = "" ]; then
     echo -e "${YE}Installing the Tela icon theme...${NC} "
     sleep 1
     
-    tar -xf ${theme_path}01-Tela.tar.xz
-    rm ${theme_path}01-Tela.tar.xz
-    sudo mv ${theme_path}Tela /usr/share/icons/
-    sudo mv ${theme_path}Tela-dark/ /usr/share/icons/
+    cd ${theme_path}
+    
+    tar -xf 01-Tela.tar.xz
+    rm 01-Tela.tar.xz
+    sudo mv Tela /usr/share/icons/
+    sudo mv Tela-dark/ /usr/share/icons/
+    
+    cd ~
 
     echo "gtk-icon-theme-name = Tela" >> .config/gtk-3.0/settings.ini
 
@@ -132,11 +137,15 @@ if [ "${aa1}" = "y" ] || [ "${aa1}" = "" ]; then
     echo -e "${YE}Installing the Marwaita theme...${NC} "
     sleep 1
 
-    tar -xf ${theme_path}Marwaita.tar.xz
-    rm ${theme_path}Marwaita.tar.xz
-    sudo mv ${theme_path}Marwaita /usr/share/themes/
-    sudo mv ${theme_path}Marwaita\ Dark/ /usr/share/themes/
-    sudo mv ${theme_path}Marwaita\ Light/ /usr/share/themes/
+    cd ${theme_path}
+    
+    tar -xf Marwaita.tar.xz
+    rm Marwaita.tar.xz
+    sudo mv Marwaita /usr/share/themes/
+    sudo mv Marwaita\ Dark/ /usr/share/themes/
+    sudo mv Marwaita\ Light/ /usr/share/themes/
+    
+    cd ~
 
     echo "gtk-theme-name = Marwaita Dark" >> .config/gtk-3.0/settings.ini
 
@@ -147,7 +156,6 @@ else
     break
 fi
 
-echo ""
 echo -e -n "${PU}Do you want to install he Breeze cursor theme (y/n)?${NC} "
 read a2
 
@@ -156,9 +164,13 @@ if [ "${a2}" = "" ] || [ "${a2}" = "y" ]; then
     echo -n -e "${YE}Installing the Breeze cursor theme...${NC} "
     sleep 1
 
-    tar -xf ${theme_path}165371-Breeze.tar.gz
-    rm ${theme_path}165371-Breeze.tar.gz
-    sudo mv ${theme_path}Breeze /usr/share/icons
+    cd ${theme_path}
+    
+    tar -xf 165371-Breeze.tar.gz
+    rm 165371-Breeze.tar.gz
+    sudo mv Breeze /usr/share/icons
+    
+    cd ~
 
     echo "gtk-cursor-theme-name = Breeze" >> .config/gtk-3.0/settings.ini
 
@@ -169,7 +181,6 @@ else
     break
 fi
 
-echo ""
 echo -e -n "${PU}Do you want to install he Vimix grub theme (y/n)?${NC} "
 read a3
 
@@ -177,10 +188,14 @@ if [ "${a3}" = "" ] || [ "${a3}" = "y" ]; then
 
     echo -e "${YE}Installing the Vimix grub theme...${NC} "
 
-    tar -xf ${theme_path}Vimix-1080p.tar.xz
-    rm ${theme_path}Vimix-1080p.tar.xz
-    sudo mv ${theme_path}Vimix-1080p/Vimix/ /boot/grub/themes/
-    rm -r ${theme_path}Vimix-1080p
+    cd ${theme_path}
+    
+    tar -xf Vimix-1080p.tar.xz
+    rm Vimix-1080p.tar.xz
+    sudo mv Vimix-1080p/Vimix/ /boot/grub/themes/
+    rm -r Vimix-1080p
+    
+    cd ~
 
     sudo chmod 777 /etc/default/grub
     echo "GRUB_THEME='/boot/grub/themes/Vimix/theme.txt'" >> /etc/default/grub
@@ -195,7 +210,6 @@ else
 fi
 
 # Dunst notify icon--------------------------------------------------------------
-echo ""
 echo -e -n "${PU}Do you want to download ${YE}<info.png> ${PU}(recommended for Dunst notify icon) (y/n)?${NC} "
 read a4
 if [ "${a4}" = "" ] || [ "${a5}" = "y" ]; then
@@ -215,7 +229,6 @@ else
 fi
 
 # Wallpaper-----------------------------------------------------------------------
-echo ""
 echo -e -n "${PU}Do you want to set a wallpaper now (y/n)?${NC} "
 read a5
 if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
