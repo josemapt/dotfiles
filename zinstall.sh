@@ -101,7 +101,7 @@ fi
 #--------------------------
 
 #Installing extra pakages
-theme_path='~/dotfiles/.config/theme/'
+theme_path='~/dotfiles/theme/'
 
 echo -e -n "${PU}Do you want to install the Tela icon theme (y/n)?${NC} "
 read a1
