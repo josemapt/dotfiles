@@ -242,6 +242,12 @@ else
     break
 fi
 
+# Cleaning-----------------------------------------------------------------
+echo -e "${YE}Removing unnecesary files...${NC} "
+sleep 1
+rm -fr dotfiles
+
+rm
 # Reboot-----------------------------------------------------------------
 echo ""
 echo -e "${YE}Setting up completed. Rebooting now...${NC} "
