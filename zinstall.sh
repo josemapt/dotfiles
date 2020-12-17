@@ -249,7 +249,6 @@ rm -fr dotfiles
 rm .fehbg
 rm .bash_logout .bash_profile .bash_history
 
-rm
 # Reboot-----------------------------------------------------------------
 echo ""
 echo -e "${YE}Setting up completed. Rebooting now...${NC} "
