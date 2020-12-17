@@ -246,6 +246,8 @@ fi
 echo -e "${YE}Removing unnecesary files...${NC} "
 sleep 1
 rm -fr dotfiles
+rm .fehbg
+rm .bash_logout .bash_profile .bash_history
 
 rm
 # Reboot-----------------------------------------------------------------
