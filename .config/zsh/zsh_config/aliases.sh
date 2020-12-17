@@ -19,8 +19,6 @@ alias mv='mv -v'
 
 alias cat='ccat -G Plaintext="blink" -G Keyword="purple" -G String="darkgreen" -G Punctuation="brown" -G Comment="faint"'
 
-alias ns='notify-send'
-
 alias yay='yay --nodiffmenu'
 alias pacman='pacman --color=always'
 
@@ -30,7 +28,7 @@ alias mkex='chmod +x'
 
 alias df='df -h'
 
-alias dmenu="dmenu_run -p '>>>' -fn 'ohsnap:size=16' -nb '#454545' -nf '#ffffff' -sb '#458588' -sf '#ffffff'"
+alias dmenu="dmenu_run -nb '#454545' -nf '#ffffff' -sb '#458588' -sf '#ffffff'"
 alias scrot='scrot -p'
 
 # Global aliases===================================================================
