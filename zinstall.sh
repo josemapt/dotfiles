@@ -207,16 +207,16 @@ fi
 # Dunst notify icon--------------------------------------------------------------
 echo -e -n "${PU}Do you want to download ${YE}<info.png> ${PU}(recommended for Dunst notify icon) (y/n)?${NC} "
 read a4
-if [ "${a4}" = "" ] || [ "${a5}" = "y" ]; then
+if [ "${a4}" = "" ] || [ "${a4}" = "y" ]; then
     if [[ ! -d ~/images ]]; then
         mkdir ~/images
     fi
 
-    curl -o ~/images/info.png https://upload.wikimedia.org/wikipedia/commons/e/e4/Infobox_info_icon.svg
+    curl -o ~/images/info.png "https://upload.wikimedia.org/wikipedia/commons/e/e4/Infobox_info_icon.svg"
 
     echo -e "${YE}Done${NC}"
     echo -e -n "${YE}Press ${PU}enter${YE} to test it${NC} "
-    read aTest
+    read a_test
     dunst &
     notify-send "This is a random notification :)"
 else
@@ -231,7 +231,7 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
         mkdir ~/images
     fi
 
-    curl -o ~/images/wall1.jpg https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg
+    curl -o ~/images/wall1.jpg "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
 
     feh --bg-scale ~/images/wall1.jpg
 
@@ -242,4 +242,5 @@ fi
 
 # Reboot-----------------------------------------------------------------
 echo ""
-echo -e "${YE}Setting up completed. Reboot now to apply changes${NC} "
+echo -e "${YE}Setting up completed. Rebooting now...${NC} "
+sleep 1
