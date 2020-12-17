@@ -251,4 +251,3 @@ rm
 # Reboot-----------------------------------------------------------------
 echo ""
 echo -e "${YE}Setting up completed. Rebooting now...${NC} "
-sleep 1
