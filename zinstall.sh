@@ -75,7 +75,7 @@ echo -e "${YE}Moving files...${NC}"
 sleep 1
 mv -f dotfiles/.config/qtile/* .config/qtile
 chmod +x .config/qtile/autostart.sh
-rmdir dotfiles/.config/qtile
+rm -r dotfiles/.config/qtile
 
 mv -f dotfiles/.config/* .config
 
@@ -84,6 +84,9 @@ chmod +x .local/bin/*
 
 mv dotfiles/scripts ~
 chmod +x scripts/*
+
+mkdir .cache/bash
+mkdir .cache/zsh
 
 mv dotfiles/.bashrc ~
 mv dotfiles/.xinitrc ~
