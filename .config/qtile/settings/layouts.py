@@ -34,6 +34,8 @@ floating_layout = layout.Floating(float_rules=[
 
     {'wmclass': 'Xephyr'},
 
+    {'wname': 'sxiv'},
+    
     {'wmclass': 'mpv'},
     
 ],border_focus=colors["active"])
