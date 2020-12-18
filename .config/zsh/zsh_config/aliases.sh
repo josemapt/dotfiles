@@ -1,8 +1,6 @@
 # Normal aliases===================================================================
 alias sudo='sudo '
 
-alias nv='nvim'
-
 alias grep='grep --color=always'
 
 alias ls='exa -F --group-directories-first'

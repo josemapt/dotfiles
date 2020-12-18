@@ -7,7 +7,8 @@ fi
 
 # Enable colors
 autoload -U colors && colors
-
+# Disable ctrl-s to freeze terminal
+stty stop undef
 # highlight config
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)       # enables main and brackets highlight
 
