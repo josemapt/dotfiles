@@ -1,21 +1,9 @@
 # Search for matching packages when an unknown command is executed
 command_not_found_handler() {
-	local pkgs cmd="$1" files=()
-	printf 'zsh: command not found: %s' "$cmd" # print command not found asap, then search for packages
-	files=(${(f)"$(pacman -F --machinereadable -- "/usr/bin/${cmd}")"})
-	if (( ${#files[@]} )); then
-		printf '\r%s may be found in the following packages:\n' "$cmd"
-		local res=() repo package version file
-		for file in "$files[@]"; do
-			res=("${(0)file}")
-			repo="$res[1]"
-			package="$res[2]"
-			version="$res[3]"
-			file="$res[4]"
-			printf '  %s/%s %s: /%s\n' "$repo" "$package" "$version" "$file"
-		done
-	else
-		printf '\n'
+	local cmd="$1"
+	echo 'Command not found:' "$cmd" # print command not found asap, then search for packages
+	if [[ `pacman -Ss $cmd` != "" ]]; then
+		echo -e "\033[1;37mThe program \033[1;35m$cmd \033[1;37mcan be installed using pacman"
+		return 1
 	fi
-	return 127
 }
