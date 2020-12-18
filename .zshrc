@@ -84,4 +84,4 @@ RPROMPT='${vcs_info_msg_0_}'
 for f in ~/.config/zsh/zsh_config/*; do source $f; done         # load all data from ~/.config/zsh/zsh_config
 
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh     # this must be the last one
+source ~/.config/zsh/zsh-syntax-highlighting/fast-syntax-highlighting.plugin.zsh     # this must be the last one
