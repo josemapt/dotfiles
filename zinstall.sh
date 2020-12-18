@@ -256,4 +256,4 @@ rm .bash_logout .bash_profile .bash_history
 echo ""
 echo -e "${YE}Setting up completed. Rebooting now...${NC} "
 
-rm zinstall.sh;
+rm zinstall.sh
