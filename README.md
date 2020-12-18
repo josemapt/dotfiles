@@ -1,7 +1,7 @@
 # dotfiles
 
 
-# Clone repository and make a clean installation in one command:
+# Clone repository and make a clean installation in one line:
 Warning!!! You can have some issues with this command if you are not running it from a clean arch installation
 ```
 curl -O https://raw.githubusercontent.com/josemapt/dotfiles/main/zinstall.sh; chmod +x zinstall.sh; ./zinstall.sh; sleep 1; reboot
