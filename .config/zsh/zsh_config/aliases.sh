@@ -27,7 +27,11 @@ alias mkex='chmod +x'
 alias df='df -h'
 
 alias dmenu="dmenu_run -nb '#454545' -nf '#ffffff' -sb '#458588' -sf '#ffffff'"
+
 alias scrot='scrot -p'
+
+alias feh='feh -g 1600x900+150+100 --scale-down'
+alias mpv='mpv --geometry=90%x90%'
 
 # Global aliases===================================================================
 #alias -g nv='nvim'
