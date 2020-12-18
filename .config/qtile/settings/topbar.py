@@ -41,6 +41,7 @@ screens = [
                     highlight_method = "block",
                     this_current_screen_border = colors["focus"],
                     disable_drag=True,
+                    margin_y=-1
                     ),
 
                 widget.Prompt(),

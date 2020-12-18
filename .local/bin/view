@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# open pdf, jpg, png, odt... files with "view"
+
+if [ -f $1 ] ; then
+    case $1 in
+        *.pdf)      zathura $1  ;;
+        *.jpg)      feh $1      ;;
+        *.png)      feh $1      ;;
+        *.odt)      libreoffice $1 2> /dev/null ;;
+        *)           echo "'$1' cannot be opened via view" ;;
+    esac
+else
+    echo -e "\033[0;31mWanrnig! \033[0;33m'$1' \033[0;31mis not a valid file\033[0m"
+    false
+fi

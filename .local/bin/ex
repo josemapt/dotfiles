@@ -11,9 +11,9 @@ if [ -f $1 ] ; then
         *.tbz2)      tar xjf $1   ;;
         *.tgz)       tar xzf $1   ;;
         *.zip)       unzip $1     ;;
-        *)           echo "'$1' cannot be extracted via ex()" ;;
+        *)           echo "'$1' cannot be extracted via ex" ;;
     esac
 else
     echo -e "\033[0;31mWanrnig! \033[0;33m'$1' \033[0;31mis not a valid file\033[0m"
-    return 1
+    false
 fi

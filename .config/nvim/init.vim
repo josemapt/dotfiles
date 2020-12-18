@@ -11,7 +11,7 @@ set termguicolors
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 
-set nowrap          " do not wrap lines
+" set nowrap          " do not wrap lines
 
 set history=500     " The number of command and search history to keep
 

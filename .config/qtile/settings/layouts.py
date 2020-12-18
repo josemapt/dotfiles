@@ -34,7 +34,7 @@ floating_layout = layout.Floating(float_rules=[
 
     {'wmclass': 'Xephyr'},
 
-    {'wname': 'sxiv'},
+    {'wmclass': 'feh'},
     
     {'wmclass': 'mpv'},
     

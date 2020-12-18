@@ -35,7 +35,7 @@ Then start qtile and copy the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S thunar feh git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet sxiv xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh xdg-utils
+sudo pacman -S thunar feh git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh xdg-utils
 ```
 
 # Installing yay.
