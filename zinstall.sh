@@ -11,7 +11,7 @@ echo -e "${YE}Setting up qtile and zsh config${NC}"
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
-sudo pacman -S --color=always --noconfirm --needed thunar feh git base-devel brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet geeqie xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip evince zsh xdg-utils 2> /dev/null
+sudo pacman -S --color=always --noconfirm --needed thunar feh git base-devel brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet sxiv xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip evince zsh xdg-utils 2> /dev/null
 echo -e "${YE}Done${NC}"
 
 # Installing yay--------------------------------------------------------
