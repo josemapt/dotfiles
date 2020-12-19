@@ -238,7 +238,7 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
 
     curl -o ~/images/wall1.jpg "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
 
-    feh --bg-scale ~/images/wall1.jpg
+    feh --no-fehbg --bg-scale ~/images/wall1.jpg
 
     echo -e "${YE}Done${NC}"
 else
