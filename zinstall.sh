@@ -11,7 +11,7 @@ echo -e "${YE}Setting up qtile and zsh config${NC}"
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
-sudo pacman -S --color=always --noconfirm --needed thunar feh git base-devel brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh xdg-utils 2> /dev/null
+sudo pacman -S --color=always --noconfirm --needed qtile thunar feh git base-devel brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh xdg-utils 2> /dev/null
 echo -e "${YE}Done${NC}"
 
 # Installing yay--------------------------------------------------------
@@ -24,8 +24,6 @@ if [[ $cmd != */* ]]; then
     makepkg -sic --noconfirm
     cd ~
     echo -e "${YE}Done${NC}"
-else
-    break
 fi
 
 # Installing yay pakages------------------------------------------------
@@ -36,20 +34,16 @@ if [[ $cmd != *vscodium-bin* ]]; then
     read vs
     if [ "${vs}" = "y" ] || [ "${vs}" = "" ]; then
         a="vscodium-bin"
-    else
-        break
     fi
 fi
 if [[ $cmd != *nerd-fonts-ubuntu-mono* ]]; then
     b="nerd-fonts-ubuntu-mono"
 fi
-if [[ $cmd != *josemapt* ]]; then
+if [[ $cmd != *dmenu-josemapt-git* ]]; then
     echo -e -n "${PU}Do you want to install ${YE}dmenu-josemapt-git${PU} (y/n)?${NC} "
     read dm
     if [ "${dm}" = "y" ] || [ "${dm}" = "" ]; then
         c="dmenu-josemapt-git"
-    else
-        break
     fi
 fi
 if [[ $cmd != *ccat* ]]; then
@@ -60,8 +54,6 @@ if [[ $cmd != *mpv-git* ]]; then
     read mpv
     if [ "${mpv}" = "y" ] || [ "${mpv}" = "" ]; then
         e="mpv-git"
-    else
-        break
     fi
 fi
 pakages="$a $b $c $d $e"
@@ -103,8 +95,6 @@ else
     if [ ! -f ~/.config/gtk-3.0/settings.ini ]; then
         touch .config/gtk-3.0/settings.ini
         echo "[Settings]" >> .config/gtk-3.0/settings.ini
-    else
-        break
     fi
 fi
 #--------------------------
@@ -131,9 +121,6 @@ if [ "${a1}" = "y" ] || [ "${a1}" = "" ]; then
 
     echo -e "${YE}Done${NC}"
     
-
-else
-    break
 fi
 
 echo -e -n "${PU}Do you want to install the Marwaita theme (y/n)?${NC} "
@@ -156,9 +143,6 @@ if [ "${aa1}" = "y" ] || [ "${aa1}" = "" ]; then
 
     echo -e "${YE}Done${NC}"
     
-
-else
-    break
 fi
 
 echo -e -n "${PU}Do you want to install he Breeze cursor theme (y/n)?${NC} "
@@ -179,8 +163,6 @@ if [ "${a2}" = "" ] || [ "${a2}" = "y" ]; then
     sudo sed -i 's/Adwaita/Breeze/g' /usr/share/icons/default/index.theme
     echo -e "${YE}Done${NC}"
 
-else
-    break
 fi
 
 echo -e -n "${PU}Do you want to install he Vimix grub theme (y/n)?${NC} "
@@ -205,8 +187,6 @@ if [ "${a3}" = "" ] || [ "${a3}" = "y" ]; then
 
     echo -e "${YE}Done${NC}"
 
-else
-    break
 fi
 
 # Dunst notify icon--------------------------------------------------------------
@@ -224,8 +204,7 @@ if [ "${a4}" = "" ] || [ "${a4}" = "y" ]; then
     read a_test
     dunst &
     notify-send "This is a random notification :)"
-else
-    break
+
 fi
 
 # Wallpaper-----------------------------------------------------------------------
@@ -241,19 +220,18 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
     feh --no-fehbg --bg-scale ~/images/wall1.jpg
 
     echo -e "${YE}Done${NC}"
-else
-    break
+
 fi
 
 # Cleaning-----------------------------------------------------------------
 echo -e "${YE}Removing unnecesary files...${NC} "
 sleep 1
 rm -fr dotfiles
-rm .fehbg
 rm .bash_logout .bash_profile .bash_history
 
 # Reboot-----------------------------------------------------------------
 echo ""
 echo -e "${YE}Setting up completed. Rebooting now...${NC} "
 
+sleep 1
 rm zinstall.sh
