@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# open pdf, jpg, png, odt... files with "view"
+# open pdf, jpg, png, odt... files with "open"
 
 if [ -f $1 ] ; then
     case $1 in

@@ -1,0 +1,58 @@
+# quit/restart bspwm, sxhkd and polybar
+super + shift + {Escape,r}
+	bspc {quit,wm -r} && pkill -USR1 -x sxhkd && killall polybar && polybar bar1 &
+
+
+# launch programs
+super + Return
+	alacritty
+
+super + m
+	firefox
+
+super + n
+	thunar
+	
+super + c
+	code
+
+super + shift + Return
+	dmenu_run
+
+
+# volume control
+XF86Audio{Raise,Lower}Volume
+	vol {up,down}
+
+XF86AudioMute
+	amixer set Master toggle
+
+# brightness control
+XF86MonBrightness{Up,Down}
+	bri {up,down}
+
+
+# kill window
+super + shift + q
+	bspc node -c
+
+# set the window state
+super + {t,f}
+	bspc node -t {tiled,floating}
+
+# expand a window
+super + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
+
+
+# focus the last node/desktop
+super + Tab
+	bspc node -f last
+
+# change workspace
+super + {1,2,3,4}
+	bspc desktop -f {1,2,3,4}
+
+# move window to workspace
+super + shift + {1,2,3,4}
+	bspc node -d {1,2,3,4}

@@ -11,9 +11,9 @@ alias tree='exa -T --level=2'
 
 alias ..='cd ..'
 
-alias cp='cp -vi'
+alias cp='cp -rvi'
 alias rm='rm -rv'
-alias mv='mv -v'
+alias mv='mv -vi'
 
 alias cat='ccat -G Plaintext="blink" -G Keyword="purple" -G String="darkgreen" -G Punctuation="brown" -G Comment="faint"'
 
