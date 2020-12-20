@@ -39,7 +39,7 @@ Then start qtile and copy the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S feh git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
+sudo pacman -S feh git brightnessctl acpi alsa-utils xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
 ```
 
 # Installing yay.
@@ -53,7 +53,7 @@ makepkg -si
 
 # Whith yay:
 ```
-yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git
+yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git ubuntu-sounds
 ```
 
 <br>
