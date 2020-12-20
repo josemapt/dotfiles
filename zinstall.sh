@@ -11,7 +11,7 @@ echo -e "${YE}Setting up bspwm and zsh config${NC}"
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
-sudo pacman -S --color=always --noconfirm --needed bspwm sxhkd xcb-util-wm thunar feh git base-devel brightnessctl acpi alsa-utils xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift unzip zathura zathura-pdf-poppler zsh xdg-utils 2> /dev/null
+sudo pacman -S --color=always --noconfirm --needed bspwm sxhkd xcb-util-wm thunar feh git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift unzip zathura zathura-pdf-poppler zsh xdg-utils 2> /dev/null
 echo -e "${YE}Done${NC}"
 
 # Installing yay--------------------------------------------------------
