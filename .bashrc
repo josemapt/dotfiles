@@ -13,8 +13,8 @@ export HISTFILE=~/.cache/bash/bash_history
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 
-# load all aliases from ~/.zsh_config/aliases.sh
-source ~/.config/zsh/zsh_config/aliases.sh
+# load all aliases from ~/.zsh_config/aliases
+source ~/.config/zsh/zsh_config/aliases
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
