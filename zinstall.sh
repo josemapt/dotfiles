@@ -79,7 +79,7 @@ if [ "${poly}" = "y" ] || [ "${poly}" = "" ]; then
 
     echo -e "${YE}Removing unnecesary files...${NC} "
     sleep 1
-    rm -f polybar
+    rm -rf polybar
 
     echo -e "${YE}Done${NC}"
 fi
