@@ -59,6 +59,32 @@ fi
 pakages="$a $b $c $d $e"
 yay -S --noconfirm $pakages
 
+echo -e "${YE}Done${NC}"
+
+# polybar
+echo -e -n "${PU}Do you want to install ${YE}polybar${PU} (y/n)?${NC} "
+read poly
+
+if [ "${poly}" = "y" ] || [ "${poly}" = "" ]; then
+
+    echo -e "${YE}Installing necessary pakages...${NC}"
+    sudo pacman -S --color=always --noconfirm --needed pkg-config cairo libxcb python3 xcb-proto xcb-util-image xcb-util-wm python-sphinx
+
+    echo -e "${YE}Cloning repository...${NC}"
+    git clone --recursive https://github.com/polybar/polybar
+    cd polybar
+    ./build.sh
+
+    cd ~
+
+    echo -e "${YE}Removing unnecesary files...${NC} "
+    sleep 1
+    rm -f polybar
+
+    echo -e "${YE}Done${NC}"
+fi
+
+
 # Cloning repository and moving files
 echo -e "${YE}Cloning repository...${NC}"
 git clone https://github.com/josemapt/dotfiles.git
