@@ -61,14 +61,14 @@ yay -S --noconfirm $pakages
 
 echo -e "${YE}Done${NC}"
 
-# polybar
+# polybar----------------------------------------------------------------------------
 echo -e -n "${PU}Do you want to install ${YE}polybar${PU} (y/n)?${NC} "
 read poly
 
 if [ "${poly}" = "y" ] || [ "${poly}" = "" ]; then
 
     echo -e "${YE}Installing necessary pakages...${NC}"
-    sudo pacman -S --color=always --noconfirm --needed pkg-config cairo libxcb python3 xcb-proto xcb-util-image xcb-util-wm python-sphinx
+    sudo pacman -S --color=always --noconfirm --needed cmake pkg-config cairo libxcb python3 xcb-proto xcb-util-image xcb-util-wm python-sphinx
 
     echo -e "${YE}Cloning repository...${NC}"
     git clone --recursive https://github.com/polybar/polybar
@@ -83,7 +83,7 @@ if [ "${poly}" = "y" ] || [ "${poly}" = "" ]; then
 
     echo -e "${YE}Done${NC}"
 fi
-
+#-------------------------------------------------------------------------------------
 
 # Cloning repository and moving files
 echo -e "${YE}Cloning repository...${NC}"
