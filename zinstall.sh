@@ -68,7 +68,7 @@ read poly
 if [ "${poly}" = "y" ] || [ "${poly}" = "" ]; then
 
     echo -e "${YE}Installing necessary pakages...${NC}"
-    sudo pacman -S --color=always --noconfirm --needed cmake pkg-config cairo libxcb python3 xcb-proto xcb-util-image xcb-util-wm python-sphinx
+    sudo pacman -S --color=always --noconfirm --needed cmake pkg-config cairo libxcb python3 xcb-proto xcb-util-image xcb-util-wm
 
     echo -e "${YE}Cloning repository...${NC}"
     git clone --recursive https://github.com/polybar/polybar
