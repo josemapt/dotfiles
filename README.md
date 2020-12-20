@@ -92,11 +92,14 @@ To remap keys create <b>~/.Xmodpad</b> and insert this:
 !change "a" key to "p"
 keycode 38 = p P
 ```
-Note that ! introduces a comment.
+Note that "!" introduces a comment.
 
 In this example, when "a" key is pressed it will write a "p". If it is pressed with "shift", it will write a "P"
 
-After editing this file run <b>xmodmap ~/.Xmodpad</b> to applay changes
+After editing this file run <b>xmodmap ~/.Xmodpad</b> to applay changes and insert this to .xinitrc:
+```
+xmodmap ~/.Xmodpad &
+```
 
 <br>
 <hr>
