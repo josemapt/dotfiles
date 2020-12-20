@@ -39,7 +39,7 @@ Then start qtile and copy the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S thunar feh git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh xdg-utils
+sudo pacman -S feh git brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
 ```
 
 # Installing yay.
@@ -53,7 +53,7 @@ makepkg -si
 
 # Whith yay:
 ```
-yay -S vscodium-bin nerd-fonts-ubuntu-mono dmenu-josemapt-git ccat mpv-git
+yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git
 ```
 
 <br>
@@ -74,6 +74,29 @@ chsh -s /bin/zsh $(whoami)
 # Superuser default shell
 sudo chsh -s /bin/zsh
 ```
+
+<br>
+<hr>
+<br>
+
+# Keyboard settings
+Run <b>xev</b> to see the keycode of the key pressed:
+```
+# After pressing "a"
+state 0x0, keycode 38 (keysym 0x61, a), same_screen YES,
+    XLookupString gives 1 bytes: (61) "a"
+    XFilterEvent returns: False
+```
+To remap keys create <b>~/.Xmodpad</b> and insert this:
+```
+!change "a" key to "p"
+keycode 38 = p P
+```
+Note that ! introduces a comment.
+
+In this example, when "a" key is pressed it will write a "p". If it is pressed with "shift", it will write a "P"
+
+After editing this file run <b>xmodmap ~/.Xmodpad</b> to applay changes
 
 <br>
 <hr>
