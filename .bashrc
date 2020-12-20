@@ -4,7 +4,7 @@
 
 # autostart when log-in
 if [[ "$(tty)" = "/dev/tty1" ]] && [[ "$(whoami)" != "root" ]]; then
-    echo "\n\033[1;33mStarting session...\033[0m"
+    echo -e "\n\033[1;33mStarting session...\033[0m"
     [[ -f ~/.xinitrc ]] && startx || echo -e "~/.xinitrc hasn't been found"
 fi
 
