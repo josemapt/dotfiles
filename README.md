@@ -22,7 +22,7 @@ curl -O https://raw.githubusercontent.com/josemapt/dotfiles/main/zinstall.sh; ch
   
 <br>
 
-<img src="https://repository-images.githubusercontent.com/320825726/85ecb200-3c89-11eb-94e8-efedf91e4b9a">
+<img src="https://repository-images.githubusercontent.com/320825726/fc318a00-4303-11eb-933e-4c785fc6597e">
 
 # Base pakages:
 
