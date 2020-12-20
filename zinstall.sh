@@ -6,12 +6,12 @@ YE='\033[1;33m'
 PU='\033[1;35m'
 NC='\033[0m'
 
-echo -e "${YE}Setting up qtile and zsh config${NC}"
+echo -e "${YE}Setting up bspwm and zsh config${NC}"
 
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
-sudo pacman -S --color=always --noconfirm --needed qtile bspwm sxhkd xcb-util-wm thunar feh git base-devel brightnessctl python-psutil acpi alsa-utils cbatticon network-manager-applet xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh xdg-utils 2> /dev/null
+sudo pacman -S --color=always --noconfirm --needed bspwm sxhkd xcb-util-wm thunar feh git base-devel brightnessctl acpi alsa-utils xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift unzip zathura zathura-pdf-poppler zsh xdg-utils 2> /dev/null
 echo -e "${YE}Done${NC}"
 
 # Installing yay--------------------------------------------------------
@@ -65,8 +65,6 @@ git clone https://github.com/josemapt/dotfiles.git
 
 echo -e "${YE}Moving files...${NC}"
 sleep 1
-mv -f dotfiles/.config/qtile/* .config/qtile
-chmod +x .config/qtile/autostart.sh
 rm -r dotfiles/.config/qtile
 
 mv -f dotfiles/.config/* .config
