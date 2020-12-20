@@ -87,7 +87,7 @@ state 0x0, keycode 38 (keysym 0x61, a), same_screen YES,
     XLookupString gives 1 bytes: (61) "a"
     XFilterEvent returns: False
 ```
-To remap keys create <b>~/.Xmodpad</b> and insert this:
+To remap keys create <b>~/.Xmodpad</b> and insert this (random example):
 ```
 !change "a" key to "p"
 keycode 38 = p P
@@ -95,6 +95,15 @@ keycode 38 = p P
 Note that "!" introduces a comment.
 
 In this example, when "a" key is pressed it will write a "p". If it is pressed with "shift", it will write a "P"
+
+You can also remap special keys like this (https://wiki.linuxquestions.org/wiki/XF86_keyboard_symbols):
+```
+!"impr pa" key
+keycode 107 = XF86Launch0
+
+!"volume up" key
+keycode 133 = XF86AudioRaiseVolume
+```
 
 After editing this file run <b>xmodmap ~/.Xmodpad</b> to applay changes and insert this to .xinitrc:
 ```
