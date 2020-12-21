@@ -56,7 +56,7 @@ module-margin-right = 0
 
 font-0 = Ubuntu Mono Nerd Font:pixelsize=16;1
 font-1 = Ubuntu Mono Nerd Font:style=Medium:pixelsize=24;5
-font-2 = wifi_icons:pixelsize=20;1
+font-2 = material\-wifi:pixelsize=14;1
 
 modules-left = menu powl1 bspwm powl2
 modules-center = xwindow
@@ -245,7 +245,7 @@ ramp-volume-foreground = ${colors.fg}
 [module/network]
 type = internal/network
 interface = wlo1
-interval = 3.0
+interval = 1
 
 format-connected = <ramp-signal>
 ;format-connected-underline = #0ff
@@ -260,11 +260,12 @@ label-disconnected = "睊 "
 label-disconnected-foreground = ${colors.red}
 label-disconnected-background = ${colors.shade3}
 
-ramp-signal-0 = "   "
-ramp-signal-1 = "   "
-ramp-signal-2 = "   "
-ramp-signal-3 = "   "
+ramp-signal-0 = "  "
+ramp-signal-1 = "  "
+ramp-signal-2 = "  "
+ramp-signal-3 = "  "
 ramp-signal-foreground = ${colors.fg}
+ramp-signal-font = 3
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
