@@ -39,7 +39,7 @@ Then start qtile and copy the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S feh git brightnessctl acpi alsa-utils xcb-util-cursor xf86-video-intel xf86-video-nouveau exa gvfs ntfs-3g dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
+sudo pacman -S feh git brightnessctl acpi alsa-utils xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst scrot redshift bc unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
 ```
 
 # Installing yay.
