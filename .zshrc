@@ -4,7 +4,6 @@ if [[ "$(tty)" = "/dev/tty1" ]] && [[ "$(whoami)" != "root" ]]; then
     [[ -f ~/.xinitrc ]] && startx || echo -e "~/.xinitrc hasn't been found"
 fi
 
-
 # Enable colors
 autoload -U colors && colors
 # Disable ctrl-s to freeze terminal
@@ -36,7 +35,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' menu select
 # Aproximate completion and max errors allowed
 zstyle ':completion:::::' completer _complete _approximate
-zstyle ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+zstyle ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/4 )) numeric )'
 # Non matches warning
 zstyle ':completion:*:warnings' format "%B$fg[red]%}---- no match for: $fg[white]%d%b"
 # exclude from autocompletion
@@ -76,7 +75,7 @@ zstyle ':vcs_info:git:*' formats '%F{green}%f on %F{cyan}%B%b%f %u%c%a'
 setopt PROMPT_SUBST
 
 # prompt ==============================================================================
-PS1='%F{red}[%w] %F{yellow}%n@%m %F{blue}(%~) %(?.%F{green}.%F{red})%f%b '
+PS1='%F{yellow}%n@%m %F{blue}(%~) %(?.%F{green}.%F{red})%f%b '
 RPROMPT='${vcs_info_msg_0_}'
 
 

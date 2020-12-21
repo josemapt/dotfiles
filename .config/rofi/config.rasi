@@ -1,0 +1,10 @@
+configuration {
+    modi: "window,drun,ssh,combi";
+    combi-modi: "window,drun,ssh";
+    case-sensitive: false;
+    me-select-entry: "MousePrimary";
+	me-accept-entry: "MouseDPrimary";
+    matching: "normal";
+    drun-match-fields: "name";
+    window-format: "{c}  {t:80}";
+}

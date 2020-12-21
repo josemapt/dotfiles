@@ -2,6 +2,11 @@
 
 export PATH=$HOME/.local/bin:$PATH
 
+xmodmap ~/.Xmodpad
+
+# make login sound
+canberra-gtk-play -i service-login &
+
 # spanish keymap
 setxkbmap es&
 
@@ -10,6 +15,9 @@ feh --no-fehbg --bg-scale '/home/josema/images/wall1.jpg' &
 
 # notifications
 dunst &
+
+# night ligth
+redshift-gtk 2> /dev/null &
 
 # scripts
 /home/josema/scripts/battery.sh &

@@ -2,8 +2,36 @@
 super + shift + {Escape,r}
 	bspc {quit,wm -r} && pkill -USR1 -x sxhkd && killall polybar && polybar bar1 &
 
+# kill window
+super + shift + q
+	bspc node -c
 
-# launch programs
+# set the window state
+super + {t,f}
+	bspc node -t {tiled,floating}
+
+# set floating state with mouse
+button2
+	bspc node -t floating || bspc node -t tiled
+
+# expand a window
+super + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
+
+# focus the last window
+super + Tab
+	bspc node -f last
+
+# change workspace
+super + {1,2,3,4}
+	bspc desktop -f {1,2,3,4} || bspc desktop -f last
+
+# move window to workspace
+super + shift + {1,2,3,4}
+	bspc node -d {1,2,3,4}
+
+
+# launch programs ===================================================================
 super + Return
 	alacritty
 
@@ -16,43 +44,22 @@ super + n
 super + c
 	code
 
+XF86Launch0
+	scrot '%Y-%m-%d_screen_shot.png' -ze 'mv $f ~/images/' && canberra-gtk-play -i camera-shutter
+
+XF86Display
+	~/scripts/rofi_menu.sh
+
 super + shift + Return
-	dmenu_run
+	~/scripts/rofi_menu.sh
 
-
-# volume control
+# volume control ===================================================================
 XF86Audio{Raise,Lower}Volume
 	vol {up,down}
 
 XF86AudioMute
 	amixer set Master toggle
 
-# brightness control
+# brightness control ===================================================================
 XF86MonBrightness{Up,Down}
 	bri {up,down}
-
-
-# kill window
-super + shift + q
-	bspc node -c
-
-# set the window state
-super + {t,f}
-	bspc node -t {tiled,floating}
-
-# expand a window
-super + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
-
-
-# focus the last node/desktop
-super + Tab
-	bspc node -f last
-
-# change workspace
-super + {1,2,3,4}
-	bspc desktop -f {1,2,3,4}
-
-# move window to workspace
-super + shift + {1,2,3,4}
-	bspc node -d {1,2,3,4}

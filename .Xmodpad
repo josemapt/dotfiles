@@ -1,0 +1,7 @@
+! run xmodmap ~/.Xmodpad to applay changes
+
+!impr pa
+keycode 107 = XF86Launch0
+
+! "?" key
+keycode 133 = XF86Launch1
