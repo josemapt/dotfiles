@@ -1,6 +1,8 @@
-# quit/restart bspwm, sxhkd and polybar
+# <pkill modules.sh -5> is used to update lemonbar
+
+# quit/restart bspwm and sxhkd
 super + shift + {Escape,r}
-	bspc {quit,wm -r} && pkill -USR1 -x sxhkd && killall polybar && polybar bar1 &
+	bspc {quit,wm -r} && pkill -USR1 -x sxhkd
 
 # kill window
 super + shift + q
@@ -24,7 +26,7 @@ super + Tab
 
 # change workspace
 super + {1,2,3,4}
-	bspc desktop -f {1,2,3,4} || bspc desktop -f last
+	pkill modules.sh -5 && bspc desktop -f {1,2,3,4} || bspc desktop -f last
 
 # move window to workspace
 super + shift + {1,2,3,4}
@@ -55,7 +57,7 @@ super + shift + Return
 
 # volume control ===================================================================
 XF86Audio{Raise,Lower}Volume
-	vol {up,down}
+	pkill modules.sh -5 && vol {up,down}
 
 XF86AudioMute
 	amixer set Master toggle

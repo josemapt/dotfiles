@@ -2,13 +2,13 @@
 
 export PATH=$HOME/.local/bin:$PATH
 
-xmodmap ~/.Xmodpad
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # make login sound
 canberra-gtk-play -i service-login &
 
 # spanish keymap
-setxkbmap es&
+setxkbmap es &
 
 # wallpaper
 xwallpaper --zoom images/wall1.jpg &
@@ -17,7 +17,7 @@ xwallpaper --zoom images/wall1.jpg &
 dunst &
 
 # night ligth
-redshift-gtk 2> /dev/null &
+#redshift-gtk 2> /dev/null &
 
 # scripts
 /home/josema/scripts/battery.sh &

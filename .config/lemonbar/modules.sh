@@ -1,5 +1,7 @@
 #!/bin/sh
 
+trap 'Update' 5
+
 bg="#292d3e"
 bg_alt="#3e4251"
 
@@ -7,10 +9,12 @@ Format() {
     echo -n " %{+u}%{B$bg_alt} $1 %{B$bg}%{-u} "
 }
 
-#===================================================================
+# ACTIVE ===================================================================
+
 Workspaces() {
     local desktops=$(bspc query -D --names)
     local focused=$(bspc query -D --names -d focused)
+    local occupied=$(bspc query -D -d .occupied)
 
     icon_list=("  " "  " "  " " 漣 ")
 
@@ -23,18 +27,17 @@ Workspaces() {
     done
 }
 
-#===================================================================
+
 Volume() {
-    local volume="$(amixer -c 0 get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"
+    local volume="$(amixer get Master | grep "%" | cut -c 22-23)"
     Format "墳 ${volume}%"
 }
 
-Network() {
-    # max quality = 70
-    local quality=`iwconfig wlo1 | grep -o "Quality=[1-9]*"`
-    let percent=${quality}*100/70
+# PASIVE ===================================================================
 
-    Format " ${percent}%"
+Clock() {
+    local DATETIME=$(date "+%a %b %d, %T")
+    Format " $DATETIME"
 }
 
 Battery() {
@@ -42,17 +45,22 @@ Battery() {
     Format "$BAT"
 }
 
-Clock() {
-    local DATETIME=$(date "+%a %b %d, %T")
-    Format " $DATETIME"
+Network() {
+    # max quality = 70
+    local quality=`iwconfig wlo1 | grep -o "Quality=[0-9]*"`
+    let percent=${quality}*100/70
+
+    Format " ${percent}%"
 }
 
+#===================================================================
 
-showContent() {
+Update() {
     echo -en "%{l}$(Workspaces)%{r}$(Volume)$(Network)$(Battery)$(Clock)"
 }
 
 while true; do
-    showContent
-    sleep 1
+    Update
+    sleep 1 &
+    wait
 done
