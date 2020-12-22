@@ -1,5 +1,5 @@
 # Normal aliases===================================================================
-alias sudo='sudo '
+alias sudo='doas -- '
 
 alias grep='grep --color=always'
 

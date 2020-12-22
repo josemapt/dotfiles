@@ -39,7 +39,7 @@ Then install any wm (like qtile) and install the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S --needed feh git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst scrot redshift unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
+sudo pacman -S --needed git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst sxiv scrot unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
 ```
 
 # Installing yay.
@@ -60,6 +60,27 @@ yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git
 <hr>
 <br>
 
+# A minimal redshift altrnative:
+```
+git clone https://github.com/graupe/brownout.git
+
+cd brownout
+
+sudo make clean install
+```
+It changes scren temperature by running:
+```
+# set temperature
+brownout 400
+# Default temperature
+brownout 0
+# change temperature
+brownout +10
+```
+
+<br>
+<hr>
+<br>
 
 # Setting up zsh
 First, install zsh with

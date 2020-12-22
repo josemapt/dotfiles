@@ -310,9 +310,8 @@ label-background = ${colors.bg}
 
 interval = 1
 
-;format-underline = ${colors.light-green}
-
 click-right = ~/scripts/rofi_usb.sh
+double-click-left = thunar /run/media/$(whoami)/
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
