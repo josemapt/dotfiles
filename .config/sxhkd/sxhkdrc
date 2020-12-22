@@ -36,7 +36,7 @@ super + Return
 	alacritty
 
 super + m
-	firefox
+	firefox || brave
 
 super + n
 	thunar

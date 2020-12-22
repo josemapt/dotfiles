@@ -5,8 +5,8 @@
 if [ -f $1 ] ; then
     case $1 in
         *.pdf)      zathura $1  ;;
-        *.jpg)      feh -g 1600x900+150+100 --scale-down $1      ;;
-        *.png)      feh -g 1600x900+150+100 --scale-down $1      ;;
+        *.jpg)      sxiv $1      ;;
+        *.png)      sxiv $1      ;;
 	    *.mp4)      mpv $1 ;;
         *.odt)      libreoffice $1 2> /dev/null ;;
         *)           echo "'$1' cannot be opened via view" ;;

@@ -33,13 +33,12 @@ base base-devel linux linux-firmware neovim intel-ucode networkmanager
 
 # Pakages to download first:
 ```
-sudo pacman -S xorg xorg-server xorg-xinit firefox alacritty
+sudo pacman -S xorg xorg-server xorg-xinit bspwm brave alacritty
 ```
-Then install any wm (like qtile) and install the rest.
 
 # Rest of pakages:
 ```
-sudo pacman -S --needed git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst sxiv scrot unzip zathura zathura-pdf-poppler zsh rofi xdg-utils
+sudo pacman -S --needed git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst sxiv scrot unzip zathura zathura-pdf-poppler zsh dmenu xdg-utils wireless_tools
 ```
 
 # Installing yay.

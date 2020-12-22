@@ -11,7 +11,7 @@ canberra-gtk-play -i service-login &
 setxkbmap es&
 
 # wallpaper
-feh --no-fehbg --bg-scale '/home/josema/images/wall1.jpg' &
+xwallpaper --zoom images/wall1.jpg &
 
 # notifications
 dunst &

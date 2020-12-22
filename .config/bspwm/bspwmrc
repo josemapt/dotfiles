@@ -3,8 +3,8 @@
 # keys daemon
 sxhkd &
 
-# status bar
-polybar bar1 &
+# status bar (lemonbar)
+~/.config/lemonbar/launch.sh &
 
 # Avoid x cursor
 xsetroot -cursor_name left_ptr &
@@ -35,5 +35,5 @@ bspc config urgent_border_color     "#dd2727"
 
 # floating rules=========================================
 bspc rule -a mpv state=floating
-bspc rule -a feh state=floating
+bspc rule -a sxiv state=floating
 bspc rule -a zoom state=floating
