@@ -134,6 +134,19 @@ xmodmap ~/.Xmodpad &
 <hr>
 <br>
 
+# Solving screen tearing problem:
+Create <b>/etc/X11/xorg.conf.d/20-intel.conf</b> and add:
+```
+Section "Device"
+  Identifier "Intel Graphics"
+  Driver "intel"
+  
+  Option "AccelMethod" "sna"
+  Option "TearFree" "true"
+  Option "DRI" "3"
+EndSection
+```
+
 # Solving screen tearing problem in firefox:
 Type <b>about:config</b> and set <b>layers.acceleration.force-enabled = true</b>
 
