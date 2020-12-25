@@ -1,0 +1,22 @@
+alias sudo='sudo '
+
+alias ls='ls --color=auto --group-directories-first'
+alias ll='ls -l --color=auto --group-directories-first'
+alias la='ls -A --color=auto --group-directories-first'
+alias lla='ls -Al --color=auto --group-directories-first'
+
+alias ..='cd ..'
+
+alias cp='cp -rvi'
+alias rm='rm -rv'
+alias mv='mv -vi'
+
+alias grep='grep --color=always'
+alias diff='diff --color'
+alias pacman='pacman --color=always'
+
+alias add='git add -v .'
+alias commit='git commit -am'
+alias push='git push -uv --progress origin'
+alias pull='git pull -v --progress'
+alias clone='git clone --progress'

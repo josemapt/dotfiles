@@ -2,25 +2,21 @@
 
 export PATH=$HOME/.local/bin:$PATH
 
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
-
 # make login sound
 canberra-gtk-play -i service-login &
 
 # spanish keymap
 setxkbmap es &
 
-# wallpaper
-xwallpaper --zoom images/wall1.jpg &
-
 # notifications
 dunst &
 
-# night ligth
-#redshift-gtk 2> /dev/null &
+# wallpaper
+hsetroot -fill ~/multimedia/wall1.jpg &
 
 # scripts
-/home/josema/scripts/battery.sh &
+~/scripts/battery.sh &
+~/scripts/night_light.sh &
 
 # touchpad settings
 xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1 &

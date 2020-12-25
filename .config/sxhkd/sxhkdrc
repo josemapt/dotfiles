@@ -1,67 +1,74 @@
-# <pkill modules.sh -5> is used to update lemonbar
+#
+# wm independent hotkeys
+#
+
+# launch programs =====================================================================
+super + Return
+	alacritty
+
+super + shift + Return
+	dmenu_run
+
+super + m
+	brave
+
+super + c
+	codium
+
+XF86Display
+	dmenu_run
+
+Print
+	scrot '%Y-%m-%d_screen_shot.png' -ze 'mv $f ~/multimedia/' && canberra-gtk-play -i camera-shutter
+
+
+# bspwm hotkeys =======================================================================
 
 # quit/restart bspwm and sxhkd
 super + shift + {Escape,r}
-	bspc {quit,wm -r} && pkill -USR1 -x sxhkd
+	bspc {quit,wm -r} && pkill -USR1 sxhkd
 
-# kill window
+# close window
 super + shift + q
 	bspc node -c
 
-# set the window state
-super + {t,f}
-	bspc node -t {tiled,floating}
 
-# set floating state with mouse
-button2
-	bspc node -t floating || bspc node -t tiled
+# Send to desktop
+super + shift + {1-4}
+    bspc node -d '^{1-4}' #--follow
+
+
+# Rotate tree
+super + space
+    bspc node @/ -C forward
+
+
+# set the window state
+super + {t, f, shift + f}
+	bspc node -t {tiled,floating,fullscreen}
+
 
 # expand a window
 super + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
 
+
 # focus the last window
 super + Tab
 	bspc node -f last
 
+
 # change workspace
 super + {1,2,3,4}
-	pkill modules.sh -5 && bspc desktop -f {1,2,3,4} || bspc desktop -f last
-
-# move window to workspace
-super + shift + {1,2,3,4}
-	bspc node -d {1,2,3,4}
-
-
-# launch programs ===================================================================
-super + Return
-	alacritty
-
-super + m
-	firefox || brave
-
-super + n
-	thunar
-	
-super + c
-	code
-
-XF86Launch0
-	scrot '%Y-%m-%d_screen_shot.png' -ze 'mv $f ~/images/' && canberra-gtk-play -i camera-shutter
-
-XF86Display
-	~/scripts/rofi_menu.sh
-
-super + shift + Return
-	~/scripts/rofi_menu.sh
+	bspc desktop -f {1,2,3,4}
 
 # volume control ===================================================================
 XF86Audio{Raise,Lower}Volume
-	pkill modules.sh -5 && vol {up,down}
+	vol {up,down}
 
 XF86AudioMute
-	amixer set Master toggle
+	vol toggle
 
 # brightness control ===================================================================
 XF86MonBrightness{Up,Down}
-	bri {up,down}
+	brightnessctl set 10%{+,-}
