@@ -52,19 +52,9 @@ sudo pacman -S --needed git brightnessctl acpi alsa-utils bc xcb-util-cursor ntf
 ```
 sudo pacman -S --needed sxiv exa scrot unzip zathura zathura-pdf-poppler xdg-utils wireless_tools thunar gvfs volumeicon cbatticon network-manager-applet
 ```
-
-## Installing yay.
+Some aur pakages:
 ```
-git clone https://aur.archlinux.org/yay.git
-
-cd yay
-
-makepkg -si
-```
-
-### Whith yay:
-```
-yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git
+vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git hsetroot
 ```
 
 <br>
