@@ -29,7 +29,7 @@ curl -O https://raw.githubusercontent.com/josemapt/dotfiles/main/zinstall.sh; ch
 <hr>
 <br>
 
-# SSETTING UP
+# SETTING UP
 
 ## Base pakages:
 
