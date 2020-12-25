@@ -24,24 +24,36 @@ curl -O https://raw.githubusercontent.com/josemapt/dotfiles/main/zinstall.sh; ch
 
 <img src="https://repository-images.githubusercontent.com/320825726/8a603d00-4311-11eb-8687-8a257a56824b">
 
-# Base pakages:
+
+<br>
+<hr>
+<br>
+
+# SSETTING UP
+
+## Base pakages:
 
 ```
 base base-devel linux linux-firmware neovim intel-ucode networkmanager
 ```
 
 
-# Pakages to download first:
+## Pakages to download first:
 ```
-sudo pacman -S xorg xorg-server xorg-xinit bspwm brave alacritty
-```
-
-# Rest of pakages:
-```
-sudo pacman -S --needed git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor ntfs-3g xf86-video-intel xf86-video-nouveau exa dunst sxiv scrot unzip zathura zathura-pdf-poppler zsh dmenu xdg-utils wireless_tools
+sudo pacman -S xorg xorg-server xorg-xinit bspwm alacritty
 ```
 
-# Installing yay.
+## Rest of pakages:
+```
+sudo pacman -S --needed git brightnessctl acpi alsa-utils bc xcb-util-cursor ntfs-3g xf86-video-intel xf86-video-nouveau dunst zsh dmenu
+```
+
+## Recommended pakages:
+```
+sudo pacman -S --needed sxiv exa scrot unzip zathura zathura-pdf-poppler xdg-utils wireless_tools thunar gvfs volumeicon cbatticon network-manager-applet
+```
+
+## Installing yay.
 ```
 git clone https://aur.archlinux.org/yay.git
 
@@ -50,7 +62,7 @@ cd yay
 makepkg -si
 ```
 
-# Whith yay:
+### Whith yay:
 ```
 yay -S vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git
 ```
@@ -147,7 +159,7 @@ Section "Device"
 EndSection
 ```
 
-# Solving screen tearing problem in firefox:
+### Solving screen tearing problem in firefox:
 Type <b>about:config</b> and set <b>layers.acceleration.force-enabled = true</b>
 
 <br>
