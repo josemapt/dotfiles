@@ -2,6 +2,12 @@
 # ~/.bashrc
 #
 
+# autostart when log-in
+if [[ "$(tty)" = "/dev/tty1" ]] && [[ "$(whoami)" != "root" ]]; then
+    echo "\n\033[1;33mStarting session...\033[0m"
+    [[ -f ~/.xinitrc ]] && exec startx || echo -e "~/.xinitrc hasn't been found"
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
