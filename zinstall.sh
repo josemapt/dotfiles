@@ -11,55 +11,64 @@ echo -e "${YE}Setting up bspwm and zsh config${NC}"
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
-sudo pacman -S --color=always --noconfirm --needed bspwm sxhkd xcb-util-wm git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst sxiv scrot unzip zathura zathura-pdf-poppler zsh dmenu xdg-utils wireless_tools 2> /dev/null
+sudo pacman -S --color=always --noconfirm --needed bspwm sxhkd xcb-util-wm git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst feh scrot unzip zathura zathura-pdf-poppler zsh dmenu xdg-utils wireless_tools 2> /dev/null
 echo -e "${YE}Done${NC}"
 
 # Installing yay--------------------------------------------------------
-cmd=`whereis yay`
-if [[ $cmd != */* ]]; then
-    echo -e "${PU}Installing yay...${NC}"
-    sleep 1
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -sic --noconfirm
-    cd ~
+
+echo -en "${PU}Do you want to install ${YE}yay ${PU}(y/n)?${NC}"
+read yay
+
+if [ "${yay}" = "y" ] || [ "${yay}" = "" ]; then
+
+    cmd=`whereis yay`
+    if [[ $cmd != */* ]]; then
+        echo -e "${YE}Installing yay...${NC}"
+        sleep 1
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -sic --noconfirm
+        cd ~
+        echo -e "${YE}Done${NC}"
+    fi
+
+    # Installing yay pakages------------------------------------------------
+    cmd=`pacman -Qqm`
+    if [[ $cmd != *vscodium-bin* ]]; then
+
+        echo -e -n "${PU}Do you want to install ${YE}vs-codium${PU} (y/n)?${NC} "
+        read vs
+        if [ "${vs}" = "y" ] || [ "${vs}" = "" ]; then
+            a="vscodium-bin"
+        fi
+    fi
+    if [[ $cmd != *nerd-fonts-ubuntu-mono* ]]; then
+        b="nerd-fonts-ubuntu-mono"
+    fi
+    if [[ $cmd != *dmenu-josemapt-git* ]]; then
+        echo -e -n "${PU}Do you want to install ${YE}dmenu-josemapt-git${PU} (y/n)?${NC} "
+        read dm
+        if [ "${dm}" = "y" ] || [ "${dm}" = "" ]; then
+            c="dmenu-josemapt-git"
+        fi
+    fi
+    if [[ $cmd != *ccat* ]]; then
+        d="ccat"
+    fi
+    if [[ $cmd != *mpv-git* ]]; then
+        echo -e -n "${PU}Do you want to install ${YE}mpv-git${PU} (y/n)?${NC} "
+        read mpv
+        if [ "${mpv}" = "y" ] || [ "${mpv}" = "" ]; then
+            e="mpv-git"
+        fi
+    fi
+    pakages="$a $b $c $d $e"
+    yay -S --noconfirm $pakages
+
     echo -e "${YE}Done${NC}"
+
 fi
 
-# Installing yay pakages------------------------------------------------
-cmd=`pacman -Qqm`
-if [[ $cmd != *vscodium-bin* ]]; then
-
-    echo -e -n "${PU}Do you want to install ${YE}vs-codium${PU} (y/n)?${NC} "
-    read vs
-    if [ "${vs}" = "y" ] || [ "${vs}" = "" ]; then
-        a="vscodium-bin"
-    fi
-fi
-if [[ $cmd != *nerd-fonts-ubuntu-mono* ]]; then
-    b="nerd-fonts-ubuntu-mono"
-fi
-if [[ $cmd != *dmenu-josemapt-git* ]]; then
-    echo -e -n "${PU}Do you want to install ${YE}dmenu-josemapt-git${PU} (y/n)?${NC} "
-    read dm
-    if [ "${dm}" = "y" ] || [ "${dm}" = "" ]; then
-        c="dmenu-josemapt-git"
-    fi
-fi
-if [[ $cmd != *ccat* ]]; then
-    d="ccat"
-fi
-if [[ $cmd != *mpv-git* ]]; then
-    echo -e -n "${PU}Do you want to install ${YE}mpv-git${PU} (y/n)?${NC} "
-    read mpv
-    if [ "${mpv}" = "y" ] || [ "${mpv}" = "" ]; then
-        e="mpv-git"
-    fi
-fi
-pakages="$a $b $c $d $e"
-yay -S --noconfirm $pakages
-
-echo -e "${YE}Done${NC}"
 
 # polybar----------------------------------------------------------------------------
 echo -e -n "${PU}Do you want to install ${YE}polybar${PU} (y/n)?${NC} "
@@ -73,7 +82,7 @@ if [ "${poly}" = "y" ] || [ "${poly}" = "" ]; then
     echo -e "${YE}Cloning repository...${NC}"
     git clone --recursive https://github.com/polybar/polybar
     cd polybar
-    ./build.sh
+    cmake .
 
     cd ~
 
@@ -94,6 +103,8 @@ sleep 1
 rm -r dotfiles/.config/qtile
 
 mv -f dotfiles/.config/* .config
+chmod +x .config/bspwm/*
+chmod +x .config/sxhkd/*
 
 mv dotfiles/.local/bin .local
 chmod +x .local/bin/*
@@ -104,9 +115,9 @@ chmod +x scripts/*
 mkdir .cache/bash
 mkdir .cache/zsh
 
-mv dotfiles/.bashrc ~
-mv dotfiles/.xinitrc ~
-mv dotfiles/.zshrc ~
+mv -f dotfiles/.bashrc ~
+mv -f dotfiles/.xinitrc ~
+mv -f dotfiles/.zshrc ~
 
 echo -e "${YE}Done${NC}"
 
