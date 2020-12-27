@@ -102,6 +102,7 @@ echo -e "${YE}Moving files...${NC}"
 sleep 1
 rm -r dotfiles/.config/qtile
 
+[[ -f "~/.config/" ]] || mkdir .config 2> /dev/null
 [[ -f "~/.config/bspwm" ]] && rm -r ~/.config/bspwm 2> /dev/null
 [[ -f "~/.config/sxhkd" ]] && rm -r ~/.config/sxhkd 2> /dev/null
 
