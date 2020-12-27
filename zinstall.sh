@@ -231,11 +231,11 @@ fi
 echo -e -n "${PU}Do you want to download ${YE}<info.png> ${PU}(recommended for Dunst notify icon) (y/n)?${NC} "
 read a4
 if [ "${a4}" = "" ] || [ "${a4}" = "y" ]; then
-    if [[ ! -d ~/images ]]; then
-        mkdir ~/images
+    if [[ ! -d ~/multimedia ]]; then
+        mkdir ~/multimedia
     fi
 
-    curl -o ~/images/info.png "https://upload.wikimedia.org/wikipedia/commons/e/e4/Infobox_info_icon.svg"
+    curl -o ~/multimedia/info.png "https://upload.wikimedia.org/wikipedia/commons/e/e4/Infobox_info_icon.svg"
 
     echo -e "${YE}Done${NC}"
     echo -e -n "${YE}Press ${PU}enter${YE} to test it${NC} "
@@ -249,11 +249,11 @@ fi
 echo -e -n "${PU}Do you want to set a wallpaper now (y/n)?${NC} "
 read a5
 if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
-    if [[ ! -d ~/images ]]; then
-        mkdir ~/images
+    if [[ ! -d ~/multimedia ]]; then
+        mkdir ~/multimedia
     fi
 
-    curl -o ~/images/wall1.jpg "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
+    curl -o ~/multimedia/wall1.jpg "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
 
     git clone https://github.com/himdel/hsetroot.git
     cd hsetroot
@@ -261,7 +261,7 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
     cd ~
     rm -rf hsetroot
 
-    hsetroot -fill ~/images/wall1.jpg
+    hsetroot -fill ~/multimedia/wall1.jpg
 
     echo -e "${YE}Done${NC}"
 
