@@ -11,7 +11,7 @@ echo -e "${YE}Setting up bspwm and zsh config${NC}"
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
-sudo pacman -S --color=always --noconfirm --needed bspwm sxhkd xcb-util-wm git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst feh scrot unzip zathura zathura-pdf-poppler zsh dmenu xdg-utils wireless_tools 2> /dev/null
+sudo pacman -S --color=always --noconfirm --needed bspwm sxhkd xcb-util-wm git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst scrot unzip zathura zathura-pdf-poppler sxiv zsh dmenu xdg-utils wireless_tools 2> /dev/null
 echo -e "${YE}Done${NC}"
 
 # Installing yay--------------------------------------------------------
@@ -102,6 +102,9 @@ echo -e "${YE}Moving files...${NC}"
 sleep 1
 rm -r dotfiles/.config/qtile
 
+[[ -f "~/.config/bspwm" ]] && rm -r ~/.config/bspwm 2> /dev/null
+[[ -f "~/.config/sxhkd" ]] && rm -r ~/.config/sxhkd 2> /dev/null
+
 mv -f dotfiles/.config/* .config
 chmod +x .config/bspwm/*
 chmod +x .config/sxhkd/*
@@ -118,6 +121,8 @@ mkdir .cache/zsh
 mv -f dotfiles/.bashrc ~
 mv -f dotfiles/.xinitrc ~
 mv -f dotfiles/.zshrc ~
+
+sudo mv dotfiles/theme/TTF/* /usr/share/fonts
 
 echo -e "${YE}Done${NC}"
 
@@ -143,7 +148,6 @@ read a1
 if [ "${a1}" = "y" ] || [ "${a1}" = "" ]; then
     
     echo -e "${YE}Installing the Tela icon theme...${NC} "
-    sleep 1
     
     curl -O "https://raw.githubusercontent.com/josemapt/dotfiles/main/theme/01-Tela.tar.xz"
     
@@ -164,7 +168,6 @@ read aa1
 if [ "${aa1}" = "y" ] || [ "${aa1}" = "" ]; then
     
     echo -e "${YE}Installing the Marwaita theme...${NC} "
-    sleep 1
 
     curl -O "https://raw.githubusercontent.com/josemapt/dotfiles/main/theme/Marwaita.tar.xz"
     
@@ -252,7 +255,13 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
 
     curl -o ~/images/wall1.jpg "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
 
-    feh --no-fehbg --bg-scale ~/images/wall1.jpg
+    git clone https://github.com/himdel/hsetroot.git
+    cd hsetroot
+    sudo make clean install
+    cd ~
+    rm -rf hsetroot
+
+    hsetroot -fill ~/images/wall1.jpg
 
     echo -e "${YE}Done${NC}"
 
