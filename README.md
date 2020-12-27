@@ -54,7 +54,7 @@ sudo pacman -S --needed sxiv exa scrot unzip zathura zathura-pdf-poppler xdg-uti
 ```
 Some aur pakages:
 ```
-vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git hsetroot
+vscodium-bin nerd-fonts-ubuntu-mono ccat mpv-git hsetroot brownout
 ```
 
 <br>
