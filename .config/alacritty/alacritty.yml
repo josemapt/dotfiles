@@ -1,33 +1,25 @@
-background_opacity: 0.85
-
 colors:
-  # Default colors
+  bright:
+    black: '#565656'
+    blue: '#49a4f8'
+    cyan: '#99faf2'
+    green: '#c0e17d'
+    magenta: '#a47de9'
+    red: '#ec5357'
+    white: '#ffffff'
+    yellow: '#f9da6a'
+  normal:
+    black: '#2e2e2e'
+    blue: '#47a0f3'
+    cyan: '#64dbed'
+    green: '#abe047'
+    magenta: '#a47de9'
+    red: '#eb4129'
+    white: '#e5e9f0'
+    yellow: '#f6c744'
   primary:
     background: '#454545'
-    foreground: '#fffbf6'
-
- # Normal colors
-  normal:
-    black:   '#2e2e2e'
-    red:     '#eb4129'
-    green:   '#abe047'
-    yellow:  '#f6c744'
-    blue:    '#47a0f3'
-    magenta: '#a47de9'
-    cyan:    '#64dbed'
-    white:   '#e5e9f0'
-
- # Bright colors
-  bright:
-    black:   '#565656'
-    red:     '#ec5357'
-    green:   '#c0e17d'
-    yellow:  '#f9da6a'
-    blue:    '#49a4f8'
-    magenta: '#a47de9'
-    cyan:    '#99faf2'
-    white:   '#ffffff'
-
+    foreground: '#f5eceb'
 font:
   bold:
     family: UbuntuMono Nerd Font
@@ -37,15 +29,11 @@ font:
     family: UbuntuMono Nerd Font
     style: Regular
   size: 16
-
+mouse_bindings:
+- action: PasteSelection
+  mouse: Right
 window:
- 
   padding:
     x: 6
     y: 6
-
   title: Alacritty
-
-
-mouse_bindings:
-  - { mouse: Right, action: PasteSelection } # Paste with right click

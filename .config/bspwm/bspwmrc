@@ -6,9 +6,9 @@ sxhkd &
 # Avoid x cursor
 xsetroot -cursor_name left_ptr &
 
-# polybar
-killall -q polybar
-polybar --config=/home/josema/.config/polybar/bar.ini mybar &
+# lemonbar
+killall -q lemonbar
+~/.config/lemonbar/launch.sh &
 
 
 # bspwm config ==========================================

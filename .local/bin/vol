@@ -24,9 +24,12 @@ function getProgressString {
 
 # Change the volume using alsa
 case "$@" in
-    up)     amixer -M set Master 5%+   > /dev/null ;;
-    down)   amixer -M set Master 5%-   > /dev/null ;;
-    toggle) amixer set Master toggle   > /dev/null ;;
+    *u)      amixer -M set Master 5%+   > /dev/null ;;
+    *up)     amixer -M set Master 5%+   > /dev/null ;;
+    *d)      amixer -M set Master 5%-   > /dev/null ;;
+    *down)   amixer -M set Master 5%-   > /dev/null ;;
+    *t)      amixer set Master toggle   > /dev/null ;;
+    *toggle) amixer set Master toggle   > /dev/null ;;
 esac
 
 # Query amixer for the current volume and whether or not the speaker is muted

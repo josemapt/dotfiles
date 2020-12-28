@@ -62,6 +62,7 @@ super + Tab
 super + {1,2,3,4}
 	bspc desktop -f {1,2,3,4}
 
+
 # volume control ===================================================================
 XF86Audio{Raise,Lower}Volume
 	vol {up,down}
