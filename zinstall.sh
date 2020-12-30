@@ -8,6 +8,8 @@ NC='\033[0m'
 
 echo -e "${YE}Setting up bspwm and zsh config${NC}"
 
+cd ~
+
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
