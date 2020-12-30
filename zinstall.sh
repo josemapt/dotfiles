@@ -102,9 +102,9 @@ echo -e "${YE}Moving files...${NC}"
 sleep 1
 rm -r dotfiles/.config/qtile
 
-[[ -f "~/.config/" ]] || mkdir .config 2> /dev/null
-[[ -f "~/.config/bspwm" ]] && rm -r ~/.config/bspwm 2> /dev/null
-[[ -f "~/.config/sxhkd" ]] && rm -r ~/.config/sxhkd 2> /dev/null
+[[ -d "~/.config/" ]] || mkdir .config 2> /dev/null
+[[ -d "~/.config/bspwm" ]] && rm -r ~/.config/bspwm 2> /dev/null
+[[ -d "~/.config/sxhkd" ]] && rm -r ~/.config/sxhkd 2> /dev/null
 
 mv -f dotfiles/.config/alacritty .config
 mv -f dotfiles/.config/bspwm .config
@@ -118,13 +118,14 @@ mv dotfiles/.local/bin/ex .local/bin/
 
 chmod +x .local/bin/*
 
-[[ -f "~/scripts" ]] || mkdir scripts 2> /dev/null
+[[ -d "~/scripts" ]] || mkdir scripts 2> /dev/null
 
 mv dotfiles/scripts/battery.sh sripts
 mv dotfiles/scripts/night_light.sh sripts
 chmod +x scripts/*
 
-mkdir .cache/bash
+
+mkdir -p .cache/bash
 
 mv -f dotfiles/.bashrc ~
 mv -f dotfiles/.xinitrc ~
@@ -268,7 +269,7 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
     cd ~
     rm -rf hsetroot
 
-    hsetroot -fill ~/multimedia/wall1.jpg
+    hsetroot -fill ~/multimedia/wall1.jpg || echo -en ""
 
     echo -e "${YE}Done${NC}"
 
