@@ -252,7 +252,7 @@ if [ "${a4}" = "" ] || [ "${a4}" = "y" ]; then
     echo -e -n "${YE}Press ${PU}enter${YE} to test it${NC} "
     read a_test
     dunst &
-    notify-send "This is a random notification :)"
+    notify-send "This is a random notification :)" 2> /dev/null
 
 fi
 
