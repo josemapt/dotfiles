@@ -103,6 +103,7 @@ sleep 1
 rm -r dotfiles/.config/qtile
 
 [[ -d "~/.config/" ]] || mkdir .config 2> /dev/null
+[[ -d "~/.local/bin/" ]] || mkdir -p .local 2> /dev/null
 [[ -d "~/.config/bspwm" ]] && rm -r ~/.config/bspwm 2> /dev/null
 [[ -d "~/.config/sxhkd" ]] && rm -r ~/.config/sxhkd 2> /dev/null
 
@@ -120,8 +121,8 @@ chmod +x .local/bin/*
 
 [[ -d "~/scripts" ]] || mkdir scripts 2> /dev/null
 
-mv dotfiles/scripts/battery.sh sripts
-mv dotfiles/scripts/night_light.sh sripts
+mv dotfiles/scripts/battery.sh scripts
+mv dotfiles/scripts/night_light.sh scripts
 chmod +x scripts/*
 
 
@@ -260,6 +261,8 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
     if [[ ! -d ~/multimedia ]]; then
         mkdir ~/multimedia
     fi
+
+    sudo pacman -S --color=always --noconfirm --needed imlib2
 
     curl -o ~/multimedia/wall1.jpg "https://i.pinimg.com/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg"
 
