@@ -103,7 +103,7 @@ sleep 1
 rm -r dotfiles/.config/qtile
 
 [[ -d "~/.config/" ]] || mkdir .config 2> /dev/null
-[[ -d "~/.local/bin/" ]] || mkdir -p .local 2> /dev/null
+[[ -d "~/.local/bin/" ]] || mkdir -p .local/bin 2> /dev/null
 [[ -d "~/.config/bspwm" ]] && rm -r ~/.config/bspwm 2> /dev/null
 [[ -d "~/.config/sxhkd" ]] && rm -r ~/.config/sxhkd 2> /dev/null
 
