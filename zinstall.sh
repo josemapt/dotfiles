@@ -110,9 +110,11 @@ rm -r dotfiles/.config/qtile
 mv -f dotfiles/.config/alacritty .config
 mv -f dotfiles/.config/bspwm .config
 mv -f dotfiles/.config/sxhkd .config
+mv -f dotfiles/.config/lemonbar .config
 
 chmod +x .config/bspwm/*
 chmod +x .config/sxhkd/*
+chmod +x .config/lemonbar/*
 
 mv dotfiles/.local/bin/vol .local/bin/
 mv dotfiles/.local/bin/ex .local/bin/
