@@ -13,7 +13,7 @@ cd ~
 # Installing necessary pakages------------------------------------------
 echo -e "${YE}Installing necessary pakages...${NC}"
 sleep 1
-sudo pacman -S --color=always --noconfirm --needed xorg xorg-xinit alacritty bspwm sxhkd xcb-util-wm git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst scrot unzip zathura zathura-pdf-poppler sxiv zsh dmenu xdg-utils wireless_tools 2> /dev/null
+sudo pacman -S --color=always --noconfirm --needed xorg xorg-xinit alacritty bspwm sxhkd xcb-util-wm git base-devel brightnessctl acpi alsa-utils bc xcb-util-cursor xf86-video-intel xf86-video-nouveau exa dunst unzip xdg-utils wireless_tools 2> /dev/null
 echo -e "${YE}Done${NC}"
 
 # Installing yay--------------------------------------------------------
@@ -73,24 +73,22 @@ fi
 
 
 # polybar----------------------------------------------------------------------------
-echo -e -n "${PU}Do you want to install ${YE}polybar${PU} (y/n)?${NC} "
-read poly
+echo -e -n "${PU}Do you want to install ${YE}lemonbar${PU} (y/n)?${NC} "
+read lemonbar
 
-if [ "${poly}" = "y" ] || [ "${poly}" = "" ]; then
-
-    echo -e "${YE}Installing necessary pakages...${NC}"
-    sudo pacman -S --color=always --noconfirm --needed cmake pkg-config cairo libxcb python3 xcb-proto xcb-util-image xcb-util-wm
+if [ "${lemonbar}" = "y" ] || [ "${lemonbar}" = "" ]; then
 
     echo -e "${YE}Cloning repository...${NC}"
-    git clone --recursive https://github.com/polybar/polybar
-    cd polybar
-    cmake .
+    git clone https://github.com/drscream/lemonbar-xft.git
+
+    cd lemonbar-xft
+    sudo make clean install
 
     cd ~
 
     echo -e "${YE}Removing unnecesary files...${NC} "
     sleep 1
-    rm -rf polybar
+    rm -rf lemonbar-xft
 
     echo -e "${YE}Done${NC}"
 fi
@@ -108,24 +106,30 @@ rm -r dotfiles/.config/qtile
 [[ -f "~/.config/bspwm" ]] && rm -r ~/.config/bspwm 2> /dev/null
 [[ -f "~/.config/sxhkd" ]] && rm -r ~/.config/sxhkd 2> /dev/null
 
-mv -f dotfiles/.config/* .config
+mv -f dotfiles/.config/alacritty .config
+mv -f dotfiles/.config/bspwm .config
+mv -f dotfiles/.config/sxhkd .config
+
 chmod +x .config/bspwm/*
 chmod +x .config/sxhkd/*
 
-mv dotfiles/.local/bin .local
+mv dotfiles/.local/bin/vol .local/bin/
+mv dotfiles/.local/bin/ex .local/bin/
+
 chmod +x .local/bin/*
 
-mv dotfiles/scripts ~
+[[ -f "~/scripts" ]] || mkdir scripts 2> /dev/null
+
+mv dotfiles/scripts/battery.sh sripts
+mv dotfiles/scripts/night_light.sh sripts
 chmod +x scripts/*
 
 mkdir .cache/bash
-mkdir .cache/zsh
 
 mv -f dotfiles/.bashrc ~
 mv -f dotfiles/.xinitrc ~
-mv -f dotfiles/.zshrc ~
 
-sudo mv dotfiles/theme/TTF/* /usr/share/fonts
+sudo mv dotfiles/theme/TTF/ /usr/share/fonts
 
 echo -e "${YE}Done${NC}"
 
