@@ -250,7 +250,7 @@ if [ "${a4}" = "" ] || [ "${a4}" = "y" ]; then
     echo -e -n "${YE}Press ${PU}enter${YE} to test it${NC} "
     read a_test
     dunst &
-    notify-send "This is a random notification :)" || echo -en "
+    notify-send "This is a random notification :)"
 
 fi
 
@@ -272,7 +272,7 @@ if [ "${a5}" = "" ] || [ "${a5}" = "y" ]; then
     cd ~
     rm -rf hsetroot
 
-    hsetroot -fill ~/multimedia/wall1.jpg || echo -en ""
+    hsetroot -fill ~/multimedia/wall1.jpg
 
     echo -e "${YE}Done${NC}"
 
