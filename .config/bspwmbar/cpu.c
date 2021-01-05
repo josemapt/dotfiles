@@ -5,19 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#if defined(__linux)
 # include <alloca.h>
 # include <sys/sysinfo.h>
-#elif defined(__OpenBSD__)
-# include <sys/types.h>
-# include <sys/sched.h>
-# include <sys/sysctl.h>
-#endif
 
 #include "bspwmbar.h"
 #include "util.h"
 
-#if defined(__linux)
 typedef struct {
 	double user;
 	double nice;
@@ -28,13 +21,6 @@ typedef struct {
 	double softirq;
 	double sum;
 } CoreInfo;
-#elif defined(__OpenBSD__)
-typedef struct {
-	uintmax_t states[CPUSTATES];
-	uintmax_t sum;
-	uintmax_t used;
-} CoreInfo;
-#endif
 
 /* functions */
 static int num_procs();
@@ -56,17 +42,8 @@ num_procs()
 	if (nproc)
 		return nproc;
 
-#if defined(__linux)
 	nproc = get_nprocs();
 	return nproc;
-#elif defined(__OpenBSD__)
-	int mibnproc[2] = { CTL_HW, HW_NCPU };
-	size_t len = sizeof(nproc);
-
-	if (sysctl(mibnproc, 2, &nproc, &len, NULL, 0) < 0)
-		return -1;
-	return nproc;
-#endif
 }
 
 int
@@ -97,7 +74,6 @@ cpu_perc(double **cores)
 
 	memcpy(b, a, sizeof(CoreInfo) * nproc);
 
-#if defined(__linux)
 	FILE *fp;
 	if (!(fp = fopen("/proc/stat", "r")))
 		return 0;
@@ -121,40 +97,20 @@ cpu_perc(double **cores)
 		i++;
 	}
 	fclose(fp);
-#elif defined(__OpenBSD__)
-	int mibcpu[3] = { CTL_KERN, 0, 0 };
-	int miblen = 3;
-	size_t len = sizeof(a[i].states);
-	if (nproc == 1) {
-		mibcpu[1] = KERN_CPTIME;
-		miblen = 2;
-	} else {
-		mibcpu[1] = KERN_CPTIME2;
-	}
-	for (i = 0; i < nproc; i++) {
-		mibcpu[2] = i;
-		sysctl(mibcpu, miblen, &a[i].states, &len, NULL, 0);
-		a[i].sum = (a[i].states[CP_USER] + a[i].states[CP_NICE] +
-		            a[i].states[CP_SYS] + a[i].states[CP_INTR] +
-		            a[i].states[CP_IDLE]);
-		a[i].used = a[i].sum - a[i].states[CP_IDLE];
-		loadavgs[i] = (a[i].used - b[i].used) / (a[i].sum - b[i].sum);
-	}
-#endif
 
 	*cores = loadavgs;
 	return nproc;
 }
 
 void
-cpugraph(draw_context_t *dc, module_option_t *opts)
+cpu_usage(draw_context_t *dc, module_option_t *opts)
 {
 	color_t *fgcols[4];
 	color_t *bgcol;
 	double *vals = NULL;
 	int i, ncore = cpu_perc(&vals);
 
-	bgcol = color_load("#555555");
+	bgcol = color_load("#292d3e");
 	for (i = 0; i < 4; i++) {
 		if (opts->cpu.cols[i])
 			fgcols[i] = color_load(opts->cpu.cols[i]);

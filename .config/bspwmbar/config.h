@@ -5,15 +5,10 @@
 
 #include "bspwmbar.h"
 
-/* intel */
-#define THERMAL_PATH "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input"
-/* k10temp */
-/* #define THERMAL_PATH "/sys/class/hwmon/hwmon1/temp1_input" */
-
 /* max length of monitor output name and bspwm desktop name */
 #define NAME_MAXSZ  32
 /* max length of active window title */
-#define TITLE_MAXSZ 50
+#define TITLE_MAXSZ 80
 /* set window height */
 #define BAR_HEIGHT  35
 
@@ -78,14 +73,7 @@ module_t right_modules[] = {
 	},
 	{ /* cpu usage */
 		.cpu = {
-			.func = cpugraph,
-			.prefix = "cpu: "
-		},
-	},
-	{ /* memory usage */
-		.mem = {
-			.func = memgraph,
-			.prefix = "mem: "
+			.func = cpu_usage,
 		},
 	},
 	{ /* Sep */
@@ -94,16 +82,11 @@ module_t right_modules[] = {
 			.label = "|",
 		},
 	},
-	{ /* battery */
-		.battery = {
-			.func = battery,
-			.prefix = " ",
-			.prefix_1 = " ",
-			.prefix_2 = " ",
-			.prefix_3 = " ",
-			.prefix_4 = " ",
-			.suffix = "%",
-			.path = "/sys/class/power_supply/BAT0/uevent",
+	{ /* cpu temperature */
+		.thermal = {
+			.func = thermal,
+			.prefix = " ",
+			.suffix = "ºC",
 		},
 	},
 	{ /* Sep */
@@ -127,12 +110,9 @@ module_t right_modules[] = {
 			.label = "|",
 		},
 	},
-	{ /* used space of root file system */
-		.fs = {
-			.func = filesystem,
-			.mountpoint = "/",
-			.prefix = "  ",
-			.suffix = "%",
+	{ /* net quality */
+		.net = {
+			.func = net,
 		},
 	},
 	{ /* Sep */
@@ -141,12 +121,23 @@ module_t right_modules[] = {
 			.label = "|",
 		},
 	},
-	{ /* cpu temperature */
-		.thermal = {
-			.func = thermal,
-			.sensor = THERMAL_PATH,
-			.prefix = " ",
-			.suffix = "ºC",
+	{ /* battery */
+		.battery = {
+			.func = battery,
+			.charging_icon = "^ ",
+			.prefix = "",
+			.prefix_1 = "",
+			.prefix_2 = "",
+			.prefix_3 = "",
+			.prefix_4 = "",
+			.prefix_5 = "",
+			.prefix_6 = "",
+			.prefix_7 = "",
+			.prefix_8 = "",
+			.prefix_9 = "",
+			.prefix_10 = "",
+			.suffix = "%",
+			.path = "/sys/class/power_supply/BAT0/uevent",
 		},
 	},
 	{ /* Sep */

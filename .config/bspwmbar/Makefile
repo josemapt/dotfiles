@@ -3,7 +3,7 @@
 VERSION   =1.0
 
 DESTDIR   =
-PREFIX    =/home/josema/bspwmbar/obj
+PREFIX    =/home/josema/.config/bspwmbar/
 
 BINPREFIX=/home/josema/
 
@@ -14,7 +14,7 @@ DLDFLAGS = -fsanitize=address -lxcb-ewmh -lxcb-util -lxcb-randr -lxcb-shm -lxcb-
 
 CC=cc
 
-MODS=bspwm cpu memory disk thermal datetime battery backlight alsa
+MODS=bspwm cpu thermal datetime battery alsa net
 OBJ = bspwmbar.o util.o systray.o $(MODS:=.o)
 
 bspwmbar: config.h util.h bspwmbar.h $(OBJ)
@@ -40,9 +40,9 @@ run: bspwmbar
 	./bspwmbar
 
 install:
-	cp bspwmbar /home/josema/.config/lemonbar/
+	cp bspwmbar /usr/local/bin/
 .PHONY: install
 
 uninstall:
-	rm -f $(DESTDIR)$(BINPREFIX)/bspwmbar
+	rm -f /usr/local/bin/bspwmbar
 .PHONY: uninstall

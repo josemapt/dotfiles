@@ -101,15 +101,11 @@ typedef struct {
 
 typedef struct {
 	MODULE_BASE;
-
-	char *sensor;
 } module_thermal_t;
 
 typedef struct {
 	MODULE_BASE;
-
-	char *mountpoint;
-} module_filesystem_t;
+} module_net_t;
 
 typedef struct {
 	MODULE_BASE;
@@ -124,31 +120,34 @@ typedef struct {
 typedef struct {
 	MODULE_BASE;
 
+	char *charging_icon;
+	char *path;
+
 	char *prefix_1;
 	char *prefix_2;
 	char *prefix_3;
 	char *prefix_4;
-	char *path;
+	char *prefix_5;
+	char *prefix_6;
+	char *prefix_7;
+	char *prefix_8;
+	char *prefix_9;
+	char *prefix_10;
 } module_battery_t;
 
-typedef struct {
-	MODULE_BASE;
-} module_backlight_t;
 
 union _module_t {
 	module_any_t any;
 	module_systray_t tray;
 	module_datetime_t date;
-	module_filesystem_t fs;
 	module_volume_t vol;
 	module_desktop_t desk;
 	module_text_t text;
 	module_graph_t cpu;
-	module_graph_t mem;
 	module_title_t title;
 	module_thermal_t thermal;
+	module_net_t net;
 	module_battery_t battery;
-	module_backlight_t backlight;
 };
 
 xcb_connection_t *xcb_connection();
@@ -166,21 +165,18 @@ void draw_padding_em(draw_context_t *, double);
 
 /* handler */
 void volume_ev(xcb_generic_event_t *);
-void backlight_ev(xcb_generic_event_t *);
 
 /* modules */
 void text(draw_context_t *, module_option_t *);
 void desktops(draw_context_t *, module_option_t *);
 void windowtitle(draw_context_t *, module_option_t *);
-void filesystem(draw_context_t *, module_option_t *);
 void thermal(draw_context_t *, module_option_t *);
 void volume(draw_context_t *, module_option_t *);
 void datetime(draw_context_t *, module_option_t *);
-void cpugraph(draw_context_t *, module_option_t *);
-void memgraph(draw_context_t *, module_option_t *);
+void cpu_usage(draw_context_t *, module_option_t *);
 void systray(draw_context_t *, module_option_t *);
 void battery(draw_context_t *, module_option_t *);
-void backlight(draw_context_t *, module_option_t *);
+void net(draw_context_t *, module_option_t *);
 
 /* temporary buffer */
 extern char buf[1024];

@@ -22,10 +22,17 @@ typedef struct {
 	uint32_t capacity;
 } battery_t;
 
+static const char *deffgcols[3] = {
+	"#e5e5e5", /* normal color */
+	"#f5a70a", /* warning color */
+	"#ed5456", /* critical color */
+};
+
 static bool battery_load_info(battery_t *, const char *);
 static void battery_draw(battery_t *, draw_context_t *, module_option_t *);
 
 static battery_t bat;
+bool charging_status = false;
 
 void
 battery(draw_context_t *dc, module_option_t *opts)
@@ -57,22 +64,34 @@ battery_prefix(battery_t *bat, module_option_t *opts)
 		prefix = opts->battery.prefix;
 		break;
 	case 1:
-	case 2:
-	case 3:
 		prefix = opts->battery.prefix_1;
 		break;
-	case 4:
-	case 5:
+	case 2:
 		prefix = opts->battery.prefix_2;
 		break;
-	case 6:
-	case 7:
-	case 8:
+	case 3:
 		prefix = opts->battery.prefix_3;
 		break;
-	case 9:
-	case 10:
+	case 4:
 		prefix = opts->battery.prefix_4;
+		break;
+	case 5:
+		prefix = opts->battery.prefix_5;
+		break;
+	case 6:
+		prefix = opts->battery.prefix_6;
+		break;
+	case 7:
+		prefix = opts->battery.prefix_7;
+		break;
+	case 8:
+		prefix = opts->battery.prefix_8;
+		break;
+	case 9:
+		prefix = opts->battery.prefix_9;
+		break;
+	case 10:
+		prefix = opts->battery.prefix_10;
 		break;
 	default:
 		prefix = opts->battery.prefix;
@@ -84,14 +103,27 @@ battery_prefix(battery_t *bat, module_option_t *opts)
 void
 battery_draw(battery_t *bat, draw_context_t *dc, module_option_t *opts)
 {
-	sprintf(buf, "%s%d%s",
+	color_t *fgcols;
+
+	if (bat->capacity < 10){
+		fgcols = color_load(deffgcols[2]);
+	} else if (bat->capacity < 30){
+		fgcols = color_load(deffgcols[1]);
+	} else{
+		fgcols = color_load(deffgcols[0]);
+	}
+
+	if (!charging_status)
+		opts->battery.charging_icon = " ";
+
+	sprintf(buf, "%s%s%d%s",
 		battery_prefix(bat, opts),
+		opts->battery.charging_icon,
 		bat->capacity,
 		opts->battery.suffix ? opts->battery.suffix : "");
-	draw_text(dc, buf);
+	draw_color_text(dc, fgcols, buf);
 }
 
-#if defined(__linux__)
 typedef enum {
 	BAT_KEY_UNKNOWN,
 	BAT_KEY_STATUS,
@@ -125,8 +157,10 @@ battery_parse_status(const char *str)
 
 	if (!strncmp("Discharging", str, strlen(str)))
 		return BAT_DISCHARGING;
-	if (!strncmp("Charging", str, strlen(str)))
+	if (!strncmp("Charging", str, strlen(str))){
+		charging_status = true;
 		return BAT_CHARGING;
+	}
 	if (!strncmp("Full", str, strlen(str)))
 		return BAT_FULL;
 
@@ -167,42 +201,3 @@ battery_load_info(battery_t *bat, const char *path)
 
 	return true;
 }
-
-#elif defined(__OpenBSD__)
-#include <fcntl.h>
-#include <machine/apmvar.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-
-bool
-battery_load_info(battery_t *bat, const char *unused)
-{
-	struct apm_power_info info;
-	int fd;
-	(void)unused;
-
-	if ((fd = open("/dev/apm", O_RDONLY)) < 0)
-		return false;
-
-	if (ioctl(fd, APM_IOC_GETPOWER, &info) < 0) {
-		close(fd);
-		return false;
-	}
-
-	switch (info.ac_state) {
-	case APM_AC_ON:
-		bat->status = BAT_CHARGING;
-		break;
-	case APM_AC_OFF:
-		bat->status = BAT_DISCHARGING;
-		break;
-	default:
-		bat->status = BAT_UNKNOWN;
-	}
-
-	bat->capacity = info.battery_life;
-
-	return true;
-}
-
-#endif

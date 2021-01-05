@@ -1,8 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
-#if defined(__linux)
+
 # include <alloca.h>
-#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

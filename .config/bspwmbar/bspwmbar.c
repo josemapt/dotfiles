@@ -1,17 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 
-#if defined(__linux)
 # define _XOPEN_SOURCE 700
 # include <alloca.h>
 # include <errno.h>
 # include <sys/epoll.h>
 # include <sys/timerfd.h>
 # include <sys/un.h>
-#elif defined(__OpenBSD__)
-# include <sys/types.h>
-# include <sys/event.h>
-# include <sys/time.h>
-#endif
 
 /* common libraries */
 #include <locale.h>
@@ -169,9 +163,7 @@ char buf[1024];
 static bspwmbar_t bar;
 static systray_t *tray;
 static poll_fd_t xfd;
-#if defined(__linux)
 static poll_fd_t timer;
-#endif
 
 static FT_Int32 load_flag = FT_LOAD_COLOR | FT_LOAD_NO_BITMAP | FT_LOAD_NO_AUTOHINT;
 static FT_Library ftlib;
@@ -194,11 +186,7 @@ static char *wintitle = NULL;
 
 /* polling fd */
 static int pfd = 0;
-#if defined(__linux)
 static struct epoll_event events[MAX_EVENTS];
-#elif defined(__OpenBSD__)
-static struct kevent events[MAX_EVENTS];
-#endif
 static list_head pollfds;
 
 /* private functions */
@@ -237,9 +225,7 @@ static void poll_init();
 static void poll_loop(void (*)());
 static void poll_stop();
 static poll_result_t xev_handle();
-#if defined(__linux)
 static poll_result_t timer_reset(int);
-#endif
 static bool is_change_active_window_event(xcb_property_notify_event_t *);
 static void cleanup(xcb_connection_t *);
 static void run();
@@ -1391,7 +1377,6 @@ void
 poll_add(poll_fd_t *pollfd)
 {
 	(void)pollfd;
-#if defined(__linux)
 	struct epoll_event ev;
 
 	ev.events = EPOLLIN;
@@ -1400,13 +1385,6 @@ poll_add(poll_fd_t *pollfd)
 
 	if (epoll_ctl(pfd, EPOLL_CTL_ADD, pollfd->fd, &ev) == -1)
 		die("epoll_ctl(): failed to add to epoll\n");
-#elif defined(__OpenBSD__)
-	struct kevent ev = { 0 };
-
-	EV_SET(&ev, pollfd->fd, EVFILT_READ, EV_ADD, 0, 0, pollfd);
-	if (kevent(pfd, &ev, 1, NULL, 0, NULL) == -1)
-		die("EV_SET(): failed to add to kqueue\n");
-#endif
 
 	list_add_tail(&pollfds, &pollfd->head);
 }
@@ -1421,14 +1399,9 @@ poll_del(poll_fd_t *pollfd)
 	if (pollfd->deinit)
 		pollfd->deinit();
 	if (pollfd->fd) {
-#if defined(__linux)
 		epoll_ctl(pfd, EPOLL_CTL_DEL, pollfd->fd, NULL);
-#elif defined(__OpenBSD__)
-		struct kevent ev = { 0 };
-		EV_SET(&ev, pollfd->fd, EVFILT_READ, EV_DELETE, 0, 0, NULL);
-		kevent(pfd, &ev, 1, NULL, 0, NULL);
-#endif
 	}
+
 	list_del(&pollfd->head);
 }
 
@@ -1443,7 +1416,6 @@ poll_init()
 	list_head_init(&pollfds);
 }
 
-#if defined(__linux)
 /**
  * timer_reset() - PollUpdateHandler for timer.
  * @fd: timerfd.
@@ -1460,7 +1432,6 @@ timer_reset(int fd)
 	return PR_UPDATE;
 }
 
-#endif
 /**
  * is_change_active_window_event() - check the event is change active window.
  *
@@ -1570,7 +1541,6 @@ xev_handle()
 	return res;
 }
 
-#if defined(__linux)
 /*
  * epoll_wait_ignore_eintr()
  *
@@ -1590,7 +1560,6 @@ epoll_wait_ignore_eintr(int pfd, struct epoll_event *events, int maxevents, int 
                return 0;
        return -1;
 }
-#endif
 
 /*
  * poll_loop() - polling loop
@@ -1602,7 +1571,6 @@ poll_loop(void (* handler)())
 	int i, nfd, need_render;
 	poll_fd_t *pollfd;
 
-#if defined(__linux)
 	/* timer for rendering at one sec interval */
 	struct itimerspec interval = { {1, 0}, {1, 0} };
 	/* initialize timer */
@@ -1612,7 +1580,6 @@ poll_loop(void (* handler)())
 	timer.fd = tfd;
 	timer.handler = timer_reset;
 	poll_add(&timer);
-#endif
 
 	/* polling X11 event for modules */
 	xfd.fd = xcb_get_file_descriptor(bar.xcb);
@@ -1620,23 +1587,10 @@ poll_loop(void (* handler)())
 	poll_add(&xfd);
 
 	/* polling fd */
-#if defined(__linux)
 	while ((nfd = epoll_wait_ignore_eintr(pfd, events, MAX_EVENTS, -1)) != -1) {
 		need_render = 0;
-#elif defined(__OpenBSD__)
-	struct timespec tspec = { 0 };
-	tspec.tv_sec = 1;
-	while ((nfd = kevent(pfd, NULL, 0, events, MAX_EVENTS, &tspec)) != -1) {
-		need_render = 0;
-		if (!nfd)
-			need_render = 1;
-#endif
 		for (i = 0; i < nfd; i++) {
-#if defined(__linux)
 			pollfd = (poll_fd_t *)events[i].data.ptr;
-#elif defined(__OpenBSD__)
-			pollfd = (poll_fd_t *)events[i].udata;
-#endif
 			switch ((int)pollfd->handler(pollfd->fd)) {
 			case PR_UPDATE:
 				need_render = 1;
@@ -1652,10 +1606,8 @@ poll_loop(void (* handler)())
 			}
 		}
 		if (need_render) {
-#if defined(__linux)
 			/* force render after interval */
 			timerfd_settime(tfd, 0, &interval, NULL);
-#endif
 			windowtitle_update(bar.xcb, 0);
 			handler();
 		}
@@ -1744,18 +1696,11 @@ run()
 		goto CLEANUP;
 	}
 
-#if defined(__linux)
 	/* epoll */
 	if ((pfd = epoll_create1(0)) == -1) {
 		err("epoll_create1(): Failed to create epoll fd\n");
 		goto CLEANUP;
 	}
-#elif defined(__OpenBSD__)
-	if (!(pfd = kqueue())) {
-		err("kqueue(): Failed to create kqueue fd\n");
-		goto CLEANUP;
-	}
-#endif
 
 	/* wait PropertyNotify events of root window */
 	attrs.event_mask = XCB_EVENT_MASK_PROPERTY_CHANGE;
