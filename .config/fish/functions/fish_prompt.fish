@@ -1,14 +1,24 @@
 function fish_prompt
-    set -l last_pipestatus $pipestatus
+
     set -l last_status $status
-    set -l normal (set_color normal)
 
-    set -l color_cwd blue
-    set -l prefix
-    set -l suffix ' >'
+    # If current dir is not writable display it in red
+    if not [ -w (pwd) ]
+        set_color red
+    else
+        set_color green
+    end
 
-    # Write pipestatus
-    set -l prompt_status (__fish_print_pipestatus " [" "]" "|" (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
+    printf '%s' (prompt_pwd)
 
-    echo -n -s (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) $normal $prompt_status $suffix " "
+    set_color normal
+    printf '%s' (__fish_git_prompt)
+
+    if not test $last_status -eq 0
+        set_color $fish_color_error
+    end
+
+    printf '  '
+    set_color normal
+
 end
