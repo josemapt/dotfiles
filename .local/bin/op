@@ -5,11 +5,12 @@
 if [ -f $1 ] ; then
     case $1 in
         *.pdf)      zathura $1  ;;
-        *.jpg)      sxiv $1      ;;
-        *.png)      sxiv $1      ;;
-	    *.mp4)      mpv $1 ;;
+        *.jpg)      sxiv $1     ;;
+        *.jpeg)     sxiv $1     ;;
+        *.png)      sxiv $1     ;;
+	    *.mp4)      mpv $1      ;;
         *.odt)      libreoffice $1 2> /dev/null ;;
-        *)           echo "'$1' cannot be opened via view" ;;
+        *)           echo "'$1' cannot be opened via op" ;;
     esac
 else
     echo -e "\033[0;31mWanrnig! \033[0;33m'$1' \033[0;31mis not a valid file\033[0m"
