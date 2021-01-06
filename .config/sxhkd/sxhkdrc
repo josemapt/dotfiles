@@ -1,16 +1,16 @@
 #
-# wm independent hotkeys
+# sxhkd independent hotkeys
 #
 
 # launch programs =====================================================================
 super + Return
-	alacritty
+	st
 
 super + shift + Return
 	dmenu_run
 
 super + m
-	brave
+	vivaldi-stable
 
 super + c
 	codium
@@ -21,46 +21,38 @@ XF86Display
 Print
 	scrot '%Y-%m-%d_screen_shot.png' -ze 'mv $f ~/multimedia/' && canberra-gtk-play -i camera-shutter
 
-
 # bspwm hotkeys =======================================================================
+# restart bspwm and sxhkd
+super + shift + r
+	bspc wm -r && pkill -USR1 -x sxhkd
 
-# quit/restart bspwm and sxhkd
-super + shift + {Escape,r}
-	bspc {quit,wm -r} && pkill -USR1 sxhkd
+# exit bspwm
+super + shift + Escape
+	bspc quit
+
+# change desktop
+super + {1-9}
+	bspc desktop -f {1-9}
+
+# Send to desktop
+super + shift + {1-4}
+    bspc node -d '^{1-4}'
 
 # close window
 super + shift + q
 	bspc node -c
 
-
-# Send to desktop
-super + shift + {1-4}
-    bspc node -d '^{1-4}' #--follow
-
-
-# Rotate tree
-super + space
-    bspc node @/ -C forward
-
-
-# set the window state
-super + {t, f, shift + f}
-	bspc node -t {tiled,floating,fullscreen}
-
+# focus the last window
+super + Tab
+	bspc node -f last
 
 # expand a window
 super + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
 
-
-# focus the last window
-super + Tab
-	bspc node -f last
-
-
-# change workspace
-super + {1,2,3,4}
-	bspc desktop -f {1,2,3,4}
+# set the window state
+super + {t, f, shift + f}
+	bspc node -t {tiled,floating,fullscreen}
 
 
 # volume control ===================================================================
@@ -72,4 +64,4 @@ XF86AudioMute
 
 # brightness control ===================================================================
 XF86MonBrightness{Up,Down}
-	brightnessctl set 10%{+,-}
+	xbacklight {-inc,-dec} 10%
