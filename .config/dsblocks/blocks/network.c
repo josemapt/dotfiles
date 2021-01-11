@@ -11,7 +11,7 @@
 
 #include <linux/wireless.h>
 
-#include "util.h"
+#include "../util.h"
 
 size_t strlcpy(char *, const char *, size_t);
 
@@ -46,8 +46,8 @@ strlcpy(char *dst, const char *src, size_t dsize)
 }
 
 
-char *
-get_network() {
+void
+network(char *str) {
 	struct ifaddrs *ifa, *ifas;
 	struct iw_quality *max_qual, *qual;
 	struct iw_statistics stats;
@@ -59,12 +59,12 @@ get_network() {
 
 	if (getifaddrs(&ifas) < 0) {
 		warn("getifaddrs");
-		return smprintf("Network not found");
+		snprintf(str, BLOCKLENGTH, "E");
 	}
 	fd = socket(PF_INET, SOCK_DGRAM, 0);
 	if (fd == -1) {
 		warn("socket");
-		return smprintf("Network not found");
+		snprintf(str, BLOCKLENGTH, "E");
 	}
 	for (ifa = ifas; ifa != NULL; ifa = ifa->ifa_next) {
 		DPRINTF_S(ifa->ifa_name);
@@ -123,7 +123,7 @@ get_network() {
 
 	DPRINTF_D(quality);
 	if (quality == -1)
-		return smprintf("Network not found");
+		snprintf(str, BLOCKLENGTH, "E");
 	
 
 	char *icon;
@@ -138,6 +138,11 @@ get_network() {
 		icon = "";
 	else
 		icon = "睊 ";
-	
-	return smprintf("%s", icon);
+
+    snprintf(str, BLOCKLENGTH, COL3 "%s", icon);
+}
+
+void
+network_c() {
+    cspawn((char *[]){ "/usr/local/bin/st", "-ig", "20x8-0+0", "watch", "-t", "iwconfig wlo1 | awk '{print $2 $3}'" , NULL });
 }
