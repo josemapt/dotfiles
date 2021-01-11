@@ -214,14 +214,14 @@
     foreground = "#454545"
     timeout = 4
     # Icon for notifications with low urgency, uncomment to enable
-    icon = ~/multimedia/info.png
+    icon = ~/images/info.png
 
 [urgency_normal]
     background = "#ffffff"
     foreground = "#454545"
     timeout = 4
     # Icon for notifications with normal urgency, uncomment to enable
-    icon = ~/multimedia/info.png
+    icon = ~/images/info.png
 
 [urgency_critical]
     background = "#900000"
@@ -229,4 +229,4 @@
     frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    icon = ~/multimedia/info.png
+    icon = ~/images/info.png

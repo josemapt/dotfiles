@@ -1,15 +1,15 @@
 #!/bin/sh
 
 while true; do
-    battery_level=`acpi -b | cut -d ' ' -f 4 | grep -o '[0-9]*'`
-    battery_status=`acpi -b | grep -c 'Charging'`
+    battery_level=`< /sys/class/power_supply/BAT0/capacity`
+    battery_status=`< /sys/class/power_supply/BAT0/status`
 
-    if [[ $battery_status -eq 1 && $battery_level -ge 80 ]];
+    if [[ $battery_status = "Charging" && $battery_level -ge 80 ]];
     then
         notify-send "Battery high" "Battery level is ${battery_level}%!"
     fi
 
-    if [[ $battery_status -eq 0 && $battery_level -le 30 ]];
+    if [[ $battery_status = "Discharging" && $battery_level -le 30 ]];
     then
         notify-send "Battery low" "Battery level is ${battery_level}%!"
     fi
