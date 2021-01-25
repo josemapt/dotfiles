@@ -1,13 +1,11 @@
+background_opacity: 0.90
+
 colors:
-  bright:
-    black: '#565656'
-    blue: '#49a4f8'
-    cyan: '#99faf2'
-    green: '#c0e17d'
-    magenta: '#a47de9'
-    red: '#ec5357'
-    white: '#ffffff'
-    yellow: '#f9da6a'
+
+  primary:
+    background: '#282c34'
+    foreground: '#f5eceb'
+  
   normal:
     black: '#2e2e2e'
     blue: '#47a0f3'
@@ -17,23 +15,40 @@ colors:
     red: '#eb4129'
     white: '#e5e9f0'
     yellow: '#f6c744'
-  primary:
-    background: '#454545'
-    foreground: '#f5eceb'
+  
+  bright:
+    black: '#565656'
+    blue: '#49a4f8'
+    cyan: '#99faf2'
+    green: '#c0e17d'
+    magenta: '#a47de9'
+    red: '#ec5357'
+    white: '#ffffff'
+    yellow: '#f9da6a'
+
+
 font:
-  bold:
-    family: UbuntuMono Nerd Font
-  italic:
-    family: UbuntuMono Nerd Font
   normal:
     family: UbuntuMono Nerd Font
     style: Regular
-  size: 16
+  
+  bold:
+    family: UbuntuMono Nerd Font
+    style: Regular
+  
+  italic:
+    family: UbuntuMono Nerd Font
+    style: Regular
+  
+  size: 20
+
 mouse_bindings:
 - action: PasteSelection
   mouse: Right
+
 window:
   padding:
     x: 6
     y: 6
+  
   title: Alacritty
