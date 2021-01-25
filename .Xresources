@@ -1,1 +1,10 @@
-
+  
+xterm*utf8: 1
+xterm*faceName: UbuntuMono Nerd Font:size=22
+xterm*faceNameDoublesize: UbuntuMono Nerd Font:size=14
+xterm*background: black
+xterm*foreground: white
+xterm*utf8Title: true
+xterm*boldMode: false
+XTerm*scrollBar:   off
+XTerm*saveLines:   5000
