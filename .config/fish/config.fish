@@ -6,10 +6,14 @@ if status is-login
 end
 
 # aliases
-alias ls='ls --color=auto --group-directories-first'
-alias la='ls -A --color=auto --group-directories-first'
-alias ll='ls -l --color=auto --group-directories-first'
-alias lla='ls -lA --color=auto --group-directories-first'
+alias ls='exa --color=auto --group-directories-first'
+alias la='exa -a --color=auto --group-directories-first'
+alias ll='exa -l --color=auto --group-directories-first'
+alias lla='exa -la --color=auto --group-directories-first'
+
+alias cat='bat'
+alias find='fd -Hg'
+#alias du='dust'
 
 alias grep='grep --color=auto'
 
