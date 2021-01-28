@@ -1,7 +1,10 @@
-# Start X at login
-if status is-login
+# start gnome (wayland) at login
+if status --is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        echo -e "\n\033[1;33mStarting session...\033[0m" && exec startx
+        set MOZ_ENABLE_WAYLAND 1
+        set QT_QPA_PLATFORM wayland
+        set XDG_SESSION_TYPE wayland
+        exec dbus-run-session gnome-session
     end
 end
 
