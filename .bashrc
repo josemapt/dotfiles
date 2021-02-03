@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-export EDITOR=nano
+export EDITOR=nvim
 export VISUAL=codium
 
 # If not running interactively, don't do anything
@@ -14,7 +14,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 
 # Completions
-complete -cf sudo man which
+complete -cf sudo man which pacman
 
 # Wrap lines on window resize
 shopt -s checkwinsize
