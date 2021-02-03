@@ -240,3 +240,9 @@ Found theme: /boot/grub/themes/Vimix-1080p/Vimix/theme.txt
 <br>
 <hr>
 <br>
+
+# Enable mute light in hp laptop keyboard
+Create <b>/etc/modprobe.d/alsa-base.conf</b> if dosen't exist and add:
+```
+options snd-hda-intel model=alc295-hp-x360
+```
