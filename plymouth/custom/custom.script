@@ -47,7 +47,15 @@ if (Plymouth.GetMode () == "boot"){
       flyingman_sprite.SetImage(flyingman_image[Math.Int(progress / 2) % 30]);
       progress++;
     }
-    
+  
+  # Hide animation with FSCK progress
+  fun progress_indicator (progress, time){
+    if (progress >= 0.75){
+      flyingman_sprite.SetOpacity (1 / (progress * 10) - 0.1);
+    } 
+  }
+
+  Plymouth.SetBootProgressFunction (progress_indicator);
   Plymouth.SetRefreshFunction (refresh_callback);
 }
 
