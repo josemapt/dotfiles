@@ -35,7 +35,7 @@ _cycle() {
   # Example:
   #  name=( "" "" "" "Media" )
   #  -> return "" "" "" "Media" 5 6 7 8 9)
-  name=( "" "" "" "Media" )
+  name=( " " " " " " " " " " " " " " " " " " )
 
   for tag in "${!tags[@]}"; do
     mask=$((1<<tag))

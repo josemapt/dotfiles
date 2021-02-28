@@ -1,22 +1,10 @@
-# start gnome (wayland) at login
-if status --is-login
-    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        set MOZ_ENABLE_WAYLAND 1
-        set QT_QPA_PLATFORM wayland
-        set XDG_SESSION_TYPE wayland
-        exec dbus-run-session gnome-session
-    end
-end
-
 # aliases
 alias ls='exa --color=auto --group-directories-first'
 alias la='exa -a --color=auto --group-directories-first'
 alias ll='exa -l --color=auto --group-directories-first'
 alias lla='exa -la --color=auto --group-directories-first'
 
-alias cat='bat'
-alias find='fd -Hg'
-#alias du='dust'
+alias fd='fd -Hg'
 
 alias grep='grep --color=auto'
 

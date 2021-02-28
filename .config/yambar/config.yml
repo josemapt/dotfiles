@@ -9,7 +9,7 @@ bar:
   height: 26
   location: top
   spacing: 5
-  margin: 7
+  margin: 5
 
   # Default font
   font: SauceCodePro Nerd Font:pixelsize=18
@@ -28,9 +28,9 @@ bar:
         path: /home/josema/.config/yambar/dwl-tags.sh
         args: [1]
         anchors:
-          - occupied: &occupied {foreground: 57bbf4ff}
-          - focused: &focused {foreground: fc65b0ff}
-          - default: &default {foreground: d2ccd6ff}
+          - occupied: &occupied {foreground: f1ffffff}
+          - focused: &focused {foreground: a47de9ff}
+          - default: &default {foreground: 4c566aff}
         content:
           - map:
               margin: 4
@@ -180,7 +180,7 @@ bar:
               spacing: 3
               items:
                   #- string: {text: "{layout}"}
-                  - string: {text: "{title}"}
+                  - string: {text: "{title}", max: 55}
 
   right:
     - removables:
@@ -195,14 +195,14 @@ bar:
               false:
                 map:
                   tag: optical
-                  on-click: sudo mount {device} /media/usb
+                  on-click: udisksctl mount -b {device}
                   values:
                     false: [{string: *drive}, {string: {text: "{label}"}}]
                     true: [{string: *optical}, {string: {text: "{label}"}}]
               true:
                 map:
                   tag: optical
-                  on-click: sudo umount /media/usb
+                  on-click: udisksctl unmount -b {device}
                   values:
                     false:
                       - string: {<<: *drive, deco: *std_underline}
@@ -273,7 +273,7 @@ bar:
                     items:
                       - string: {text: "   ", foreground: ff0000ff, font: *awesome}
                       - string: {text: "   ", foreground: ffa600ff, font: *awesome}
-                      - string: {text: "   ", font: *awesome}
+                      - string: {text: "   ", foreground: ffa600ff, font: *awesome}
                       - string: {text: "   ", font: *awesome}
                       - string: {text: "   ", font: *awesome}
                       - string: {text: "   ", font: *awesome}
