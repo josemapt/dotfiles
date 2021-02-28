@@ -1,6 +1,6 @@
 # fonts
-awesome: &awesome SauceCodePro Nerd Font:style=solid:pixelsize=14
-awesome_brands: &awesome_brands SauceCodePro Nerd Font:pixelsize=16
+awesome: &awesome SauceCodePro Nerd Font:style=solid:pixelsize=18
+awesome_brands: &awesome_brands SauceCodePro Nerd Font:pixelsize=20
 
 std_underline: &std_underline {underline: { size: 2, color: ff0000ff}}
 
@@ -24,9 +24,164 @@ bar:
     top-margin: 0
 
   left:
-    - xwindow:
+    - script:
+        path: /home/josema/.config/yambar/dwl-tags.sh
+        args: [1]
+        anchors:
+          - occupied: &occupied {foreground: 57bbf4ff}
+          - focused: &focused {foreground: fc65b0ff}
+          - default: &default {foreground: d2ccd6ff}
         content:
-          string: {text: "{application}: {title}"}
+          - map:
+              margin: 4
+              tag: tag_0_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_0_focused
+                    values:
+                      true: {string: {text: "{tag_0}", <<: *focused}}
+                      false: {string: {text: "{tag_0}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_0_focused
+                    values:
+                      true: {string: {text: "{tag_0}", <<: *focused}}
+                      false: {string: {text: "{tag_0}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_1_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_1_focused
+                    values:
+                      true: {string: {text: "{tag_1}", <<: *focused}}
+                      false: {string: {text: "{tag_1}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_1_focused
+                    values:
+                      true: {string: {text: "{tag_1}", <<: *focused}}
+                      false: {string: {text: "{tag_1}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_2_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_2_focused
+                    values:
+                      true: {string: {text: "{tag_2}", <<: *focused}}
+                      false: {string: {text: "{tag_2}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_2_focused
+                    values:
+                      true: {string: {text: "{tag_2}", <<: *focused}}
+                      false: {string: {text: "{tag_2}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_3_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_3_focused
+                    values:
+                      true: {string: {text: "{tag_3}", <<: *focused}}
+                      false: {string: {text: "{tag_3}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_3_focused
+                    values:
+                      true: {string: {text: "{tag_3}", <<: *focused}}
+                      false: {string: {text: "{tag_3}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_4_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_4_focused
+                    values:
+                      true: {string: {text: "{tag_4}", <<: *focused}}
+                      false: {string: {text: "{tag_4}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_4_focused
+                    values:
+                      true: {string: {text: "{tag_4}", <<: *focused}}
+                      false: {string: {text: "{tag_4}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_5_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_5_focused
+                    values:
+                      true: {string: {text: "{tag_5}", <<: *focused}}
+                      false: {string: {text: "{tag_5}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_5_focused
+                    values:
+                      true: {string: {text: "{tag_5}", <<: *focused}}
+                      false: {string: {text: "{tag_5}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_6_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_6_focused
+                    values:
+                      true: {string: {text: "{tag_6}", <<: *focused}}
+                      false: {string: {text: "{tag_6}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_6_focused
+                    values:
+                      true: {string: {text: "{tag_6}", <<: *focused}}
+                      false: {string: {text: "{tag_6}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_7_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_7_focused
+                    values:
+                      true: {string: {text: "{tag_7}", <<: *focused}}
+                      false: {string: {text: "{tag_7}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_7_focused
+                    values:
+                      true: {string: {text: "{tag_7}", <<: *focused}}
+                      false: {string: {text: "{tag_7}", <<: *default}}
+          - map:
+              margin: 4
+              tag: tag_8_occupied
+              values:
+                true:
+                  map:
+                    tag: tag_8_focused
+                    values:
+                      true: {string: {text: "{tag_8}", <<: *focused}}
+                      false: {string: {text: "{tag_8}", <<: *occupied}}
+                false:
+                  map:
+                    tag: tag_8_focused
+                    values:
+                      true: {string: {text: "{tag_8}", <<: *focused}}
+                      false: {string: {text: "{tag_8}", <<: *default}}
+          - list:
+              spacing: 3
+              items:
+                  #- string: {text: "{layout}"}
+                  - string: {text: "{title}"}
+
   right:
     - removables:
         anchors:
