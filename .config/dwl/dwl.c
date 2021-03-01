@@ -972,10 +972,13 @@ createpointer(struct wlr_input_device *device)
 	//-- sway github and libinput list-devices
 	char *my_input_name = strdup(device->name ? device->name : "");
 	//------------------------------------------------------------------------
+	// -- TODO --
+	// use device->type instead of name
 
 	if (wlr_input_device_is_libinput(device)) {
 		struct libinput_device *libinput_device =  (struct libinput_device*)
 			wlr_libinput_get_device_handle(device);
+		
 
 		if (tap_to_click && libinput_device_config_tap_get_finger_count(libinput_device))
 			libinput_device_config_tap_set_enabled(libinput_device, LIBINPUT_CONFIG_TAP_ENABLED);

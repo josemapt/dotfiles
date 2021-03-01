@@ -19,7 +19,8 @@ static const Rule rules[] = {
 	{ "Gimp",       NULL,       0,            1,           -1 },
 	{ "firefox",    NULL,       1 << 8,       0,           -1 },
 	*/
-	{ "VirtualBox", NULL,       0,            1,           -1 },
+	{ "virt-manager", NULL,       0,            1,           -1 },
+	{ "lxsession",  NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -34,12 +35,12 @@ static const Layout layouts[] = {
  * The order in which monitors are defined determines their position.
  * Non-configured monitors are always added to the left. */
 static const MonitorRule monrules[] = {
-	/* name       mfact nmaster scale layout       rotate/reflect x y */
+	/* name       mfact nmaster scale layout       rotate/reflect             x y */
 	/* example of a HiDPI laptop monitor:
 	{ "eDP-1",    0.5,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0 },
 	*/
 	/* defaults */
-	{ "HDMI-A-1", 0.55, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0,0 },
+	{ "HDMI-A-1", 0.55, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 1920,1080 },
 	{ "eDP-1",    0.55, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 1080 },
 };
 
