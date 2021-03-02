@@ -1,0 +1,292 @@
+# fonts
+awesome: &awesome SauceCodePro Nerd Font:style=solid:pixelsize=18
+awesome_brands: &awesome_brands SauceCodePro Nerd Font:pixelsize=16
+
+std_underline: &std_underline {underline: { size: 2, color: ff0000ff}}
+
+underline_1 : &underline_1 {underline: { size: 2, color: 8e24aaff}}
+underline_2 : &underline_1 {underline: { size: 2, color: 8e24aaff}}
+underline_3 : &underline_1 {underline: { size: 2, color: 8e24aaff}}
+underline_4 : &underline_1 {underline: { size: 2, color: 8e24aaff}}
+
+# This is THE bar configuration
+bar:
+  height: 26
+  monitor: HDMI-A-1
+  location: top
+  spacing: 8
+  margin: 5
+
+  # Default font
+  font: SauceCodePro Nerd Font:pixelsize=18
+
+  foreground: f5ecebff
+  background: 292d3eee
+
+  border:
+    width: 2
+    color: 292d3eee
+    margin: 10
+    top-margin: 0
+    bottom-margin: 0
+
+
+  left:
+    - i3:
+        sort: ascending
+        anchors: # Not used (directly) by f00bar; used here to avoid duplication
+          - string: &i3_common {right-margin: 10, left-margin: 12, on-click: "swaymsg --quiet workspace {name}"}
+          - string: &default {<<: *i3_common, text: "{name}"}
+          - string: &1  {<<: *i3_common, text: " ", font: *awesome}
+          - string: &2  {<<: *i3_common, text: " ", font: *awesome}
+          - string: &3  {<<: *i3_common, text: " ", font: *awesome_brands}
+          - string: &4  {<<: *i3_common, text: " ", font: *awesome}
+          - string: &5  {<<: *i3_common, text: " ", font: *awesome}
+          - string: &6  {<<: *i3_common, text: " ", font: *awesome}
+          - string: &7  {<<: *i3_common, text: " ", font: *awesome_brands}
+          - string: &8  {<<: *i3_common, text: " ", font: *awesome}
+          - string: &9  {<<: *i3_common, text: " ", font: *awesome}
+          - focused: &focused
+              deco: {stack: [background: {color: ffa0a04c}, <<: *std_underline]}
+          - invisible: &invisible {foreground: ffffff55}
+          - urgent: &urgent
+              foreground: 000000ff
+              deco: {stack: [background: {color: bc2b3fff}, <<: *std_underline]}
+          - map: &i3_mode
+              tag: mode
+              default:
+                - string:
+                    margin: 5
+                    text: "{mode}"
+                    deco: {background: {color: cc421dff}}
+                - empty: {right-margin: 7}
+              values:
+                default: {empty: {}}
+        content:
+          "":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*default, *focused]}}
+                unfocused: {string: {<<: *default}}
+                invisible: {string: {<<: [*default, *invisible]}}
+                urgent:    {string: {<<: [*default, *urgent]}}
+          "1":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*1, *focused]}}
+                unfocused: {string: {<<: *1}}
+                invisible: {string: {<<: [*1, *invisible]}}
+                urgent:    {string: {<<: [*1, *urgent]}}
+          
+          "2":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*2, *focused]}}
+                unfocused: {string: {<<: *2}}
+                invisible: {string: {<<: [*2, *invisible]}}
+                urgent:    {string: {<<: [*2, *urgent]}}
+          
+          "3":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*3, *focused]}}
+                unfocused: {string: {<<: *3}}
+                invisible: {string: {<<: [*3, *invisible]}}
+                urgent:    {string: {<<: [*3, *urgent]}}
+          
+          "4":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*4, *focused]}}
+                unfocused: {string: {<<: *4}}
+                invisible: {string: {<<: [*4, *invisible]}}
+                urgent:    {string: {<<: [*4, *urgent]}}
+          
+          "5":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*5, *focused]}}
+                unfocused: {string: {<<: *5}}
+                invisible: {string: {<<: [*5, *invisible]}}
+                urgent:    {string: {<<: [*5, *urgent]}}
+          
+          "6":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*6, *focused]}}
+                unfocused: {string: {<<: *6}}
+                invisible: {string: {<<: [*6, *invisible]}}
+                urgent:    {string: {<<: [*6, *urgent]}}
+          
+          "7":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*7, *focused]}}
+                unfocused: {string: {<<: *7}}
+                invisible: {string: {<<: [*7, *invisible]}}
+                urgent:    {string: {<<: [*7, *urgent]}}
+          
+          "8":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*8, *focused]}}
+                unfocused: {string: {<<: *8}}
+                invisible: {string: {<<: [*8, *invisible]}}
+                urgent:    {string: {<<: [*8, *urgent]}}
+          
+          "9":
+            map:
+              tag: state
+              values:
+                focused:   {string: {<<: [*9, *focused]}}
+                unfocused: {string: {<<: *9}}
+                invisible: {string: {<<: [*9, *invisible]}}
+                urgent:    {string: {<<: [*9, *urgent]}}
+          
+
+          current:
+            map:
+              left-margin: 7
+              tag: application
+              values:
+                "":
+                  - map: {<<: *i3_mode}
+                  - string: {text: "{title}"}
+              default:
+                list:
+                  spacing: 0
+                  items:
+                    - map: {<<: *i3_mode}
+                    - string: {text: "{application}", max: 10, foreground: ffa0a0ff}
+                    - string: {text: ": "}
+                    - string: {text: "{title}", max: 55}
+
+
+  right:
+    - removables:
+        anchors:
+          drive: &drive { text: 禍, font: *awesome}
+          optical: &optical {text: " ", font: *awesome_brands}
+        spacing: 5
+        content:
+          map:
+            tag: mounted
+            values:
+              false:
+                map:
+                  tag: optical
+                  on-click: udisksctl mount -b {device}
+                  values:
+                    false: [{string: *drive}, {string: {text: "{label}"}}]
+                    true: [{string: *optical}, {string: {text: "{label}"}}]
+              true:
+                map:
+                  tag: optical
+                  on-click: udisksctl unmount -b {device}
+                  values:
+                    false:
+                      - string: {<<: *drive, deco: *std_underline}
+                      - string: {text: "{label}", deco: *std_underline}
+                    true:
+                      - string: {<<: *optical, deco: *std_underline}
+                      - string: {text: "{label}", deco: *std_underline}
+
+    - network:
+        name: eno1
+        content:
+          map:
+            tag: carrier
+            values:
+              false: {empty: {}}
+              true:
+                map:
+                  tag: state
+                  default: {string: {text: " ", font: *awesome_brands, foreground: ffffff66}}
+                  values:
+                    up:
+                      map:
+                        tag: ipv4
+                        default: {string: {text: " ", font: *awesome_brands}}
+                        values:
+                          "": {string: {text: " ", font: *awesome_brands, foreground: ffffff66}}
+    - network:
+        name: wlo1
+        content:
+          map:
+            tag: state
+            default: {string: {text: " ", font: *awesome, foreground: ffffff66}}
+            values:
+              down: {string: {text: " ", font: *awesome, foreground: ff0000ff}}
+              up:
+                map:
+                  tag: ipv4
+                  default: {string: {text: " ", font: *awesome}}
+                  values:
+                    "": {string: {text: " ", font: *awesome, foreground: ffffff66}}
+    - alsa:
+        card: hw:PCH
+        mixer: Master
+        content:
+          map:
+            on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
+            tag: muted
+            values:
+              true: {string: {text: 婢, font: *awesome, foreground: ffffff66}}
+              false:
+                ramp:
+                  tag: volume
+                  items:
+                    - string: {text: , font: *awesome}
+                    - string: {text: 奔, font: *awesome}
+                    - string: {text: 墳, font: *awesome}
+
+    - battery:
+        name: BAT0
+        poll-interval: 30
+        content:
+          map:
+            tag: state
+            values:
+              discharging:
+                - ramp:
+                    tag: capacity
+                    items:
+                      - string: {text: "   ", foreground: ff0000ff, font: *awesome}
+                      - string: {text: "   ", foreground: ffa600ff, font: *awesome}
+                      - string: {text: "   ", foreground: ffa600ff, font: *awesome}
+                      - string: {text: "   ", font: *awesome}
+                      - string: {text: "   ", font: *awesome}
+                      - string: {text: "   ", font: *awesome}
+                      - string: {text: "   ", font: *awesome}
+                      - string: {text: "   ", font: *awesome}
+                      - string: {text: "   ", font: *awesome}
+                      - string: {text: "   ", foreground: 00ff00ff, font: *awesome}
+                - string: {text: "{capacity}%"}
+              charging:
+                - string: {text: "  ", foreground: 00ff00ff, font: *awesome}
+                - string: {text: "{capacity}%"}
+              full:
+                - string: {text: "   ", foreground: 00ff00ff, font: *awesome}
+                - string: {text: "{capacity}% full"}
+    - clock:
+        time-format: "%H:%M"
+        content:
+          - string: {text: " ", font: *awesome}
+          - string: {text: "{date}", right-margin: 5}
+          - string: {text: " ", font: *awesome}
+          - string: {text: "{time}"}
+    - label:
+        content:
+          string:
+            on-click: wlogout -p layer-shell 2> /dev/null
+            text: " "
+            font: *awesome_brands
