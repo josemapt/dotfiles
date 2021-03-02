@@ -39,11 +39,16 @@ workspace 1 output HDMI-A-1
 workspace 2 output HDMI-A-1
 
 
-### border and gaps config ---------------------------------------------------------------
+### general config ---------------------------------------------------------------------
 default_border pixel 1
+default_floating_border pixel 1
 
 gaps outer 6
 gaps inner 6
+
+# floating rules
+floating_minimum_size 600 x 400
+floating_maximum_size 0 x 0
 
 # client        border  background  text(title) indicator   child_border
 client.focused  #a47de9 #285577     #ffffff     #2e9ef4     #a47de9
