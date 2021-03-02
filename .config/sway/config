@@ -1,19 +1,45 @@
-# config file for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+### ---------------- ###
+### SWAY CONFIG FILE ###
+### ---------------- ###
 
-### autostart
+### Variables ----------------------------------------------------------------------------
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# programs
+set $term alacritty
+set $editor codium
+set $browser brave
+set $menu wofi --show drun
+set $scshot ~/scripts/screenshot.sh
+
+# volume control (https://github.com/francma/wob)
+set $vol_up amixer set Master 5%+ | sed -En 's/.*\[([0-9]+)%\].*/\1/p' | head -1 > ${SWAYSOCK}.wob
+set $vol_down amixer set Master 5%- | sed -En 's/.*\[([0-9]+)%\].*/\1/p' | head -1 > ${SWAYSOCK}.wob
+set $vol_toggle amixer set Master toggle | sed -En '/\[on\]/ s/.*\[([0-9]+)%\].*/\1/ p; /\[off\]/ s/.*/0/p' | head -1 > ${SWAYSOCK}.wob
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+
+### autostart ----------------------------------------------------------------------------
 exec yambar 2> /dev/null &
 exec dunst &
 exec gammastep -O 4000 &
 exec /home/josema/scripts/battery.sh &
+exec mkfifo ${SWAYSOCK}.wob && tail -f ${SWAYSOCK}.wob | wob -b 1 -a top -a right -M 40 -H 30 -W 300 &
 
-# focus monitor at start
+# focus monitor at start and assign workspace 1
 focus output HDMI-A-1
+workspace 1 output HDMI-A-1
+workspace 2 output HDMI-A-1
 
-### border config
+
+### border and gaps config ---------------------------------------------------------------
 default_border pixel 1
 
 gaps outer 6
@@ -22,59 +48,32 @@ gaps inner 6
 # client        border  background  text(title) indicator   child_border
 client.focused  #a47de9 #285577     #ffffff     #2e9ef4     #a47de9
 
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
-# Your preferred terminal emulator
-set $term alacritty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu wofi --show drun
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+### Output configuration ---------------------------------------------------------------
+
+# swaymsg -t get_outputs
+
+# wallpaper (needs swaybg)
 output * bg /usr/share/images/wall1.jpg fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
 
-output HDMI-A-1 resolution 1920x1080 position 0,0
+# monitors
 output eDP-1 resolution 1920x1080 position 0,1080
+output HDMI-A-1 resolution 1920x1080 position 0,0
 
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+### Idle configuration ---------------------------------------------------------------
 
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+set $swaylock_cmd 'swaylock -f -e -S --clock --indicator-idle-visible --indicator-radius 100 --indicator-thickness 7 --text-color ffffff --effect-blur 7x5 --effect-vignette 0.5:0.5 --grace 15 --fade-in 0.8'
+
+exec swayidle -w \
+        timeout 600 $swaylock_cmd \
+        timeout 610 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+        before-sleep $swaylock_cmd \
+
+
+### Input configuration ---------------------------------------------------------------
+
+# swaymsg -t get_inputs
 
 input "2:14:ETPS/2_Elantech_Touchpad" {
     natural_scroll enabled
@@ -85,30 +84,31 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout "es"
 }
 
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
+### Key bindings ---------------------------------------------------------------
 #
 # Basics:
 #
-    # Start a terminal
+    # Start a program
     bindsym $mod+Return exec $term
+    bindsym $mod+c exec $editor
+    bindsym $mod+m exec $browser
+    bindsym $mod+Shift+Return exec $menu
+    bindsym Print exec $scshot
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
-    # Start your launcher
-    bindsym $mod+Shift+Return exec $menu
+    # # Reload the configuration file
+    bindsym $mod+Shift+r reload
 
-    # programs
-    bindsym $mod+c exec codium
-    bindsym $mod+m exec brave
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+Escape exec wlogout -p layer-shell 2> /dev/null
 
     # volume keys
-    bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-    bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-    bindsym XF86AudioMute exec amixer -q set Master toggle
+    bindsym XF86AudioRaiseVolume exec $vol_up
+    bindsym XF86AudioLowerVolume exec $vol_down
+    bindsym XF86AudioMute exec $vol_toggle
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -117,11 +117,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     # mouse button for dragging.
     floating_modifier $mod normal
 
-    # Reload the configuration file
-    bindsym $mod+Shift+r reload
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -171,11 +167,13 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+
 #
 # Layout stuff:
 #
+    # move focus to last focused workspace
+    bindsym $mod+Tab workspace back_and_forth
+
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
@@ -183,6 +181,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
+    bindsym $mod+t layout default
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
@@ -234,21 +233,3 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
-#
-#    # When the status_command prints a new line to stdout, swaybar updates.
-#    # The default just shows the current date and time.
-#    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-#
-#    colors {
-#        statusline #ffffff
-#        background #323232
-#        inactive_workspace #32323200 #32323200 #5c5c5c
-#    }
-#}
